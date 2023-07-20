@@ -1,0 +1,333 @@
+<div fxFill fxLayout="column" class="app-bg-container overflow-hidden">
+  <div class="px-4 pt-4">
+    <div class="flex items-center">
+      <div class="h-3 w-3 app-bg-info rounded-full mr-2"></div>
+      <div class="app-productive-heading-02 font-bold">YP-2340</div>
+      <div class="flex-1 flex justify-end">
+        <button ibmButton="ghost" size="sm" class="bx--btn--icon-only mr-1">
+          <svg class="bx--btn__icon" ibmIconLocked size="32"></svg>
+        </button>
+        <button ibmButton="ghost" size="sm" class="bx--btn--icon-only mr-1">
+          <svg class="bx--btn__icon" ibmIconPin size="32"></svg>
+        </button>
+        <button ibmButton="ghost" size="sm" class="bx--btn--icon-only mr-1">
+          <svg class="bx--btn__icon" ibmIconShare size="32"></svg>
+        </button>
+        <button (click)="onClose()" ibmButton="ghost" size="sm" class="bx--btn--icon-only">
+          <svg class="bx--btn__icon" ibmIconClose size="32"></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div fxFlex class="relative">
+    <shaft-sidenav-container>
+
+      <div fxFill fxLayout="column">
+
+        <div fxFlex class="relative">
+          <div class="app-a-box app-scrollbar-fix">
+            <ng-scrollbar>
+              <div class="app-content app-content--default">
+
+                <ibm-tab-header-group class="app-ibm-tab-auto">
+                  <ibm-tab-header (click)="onTabChange(1)">
+                    Info
+                  </ibm-tab-header>
+                  <ibm-tab-header (click)="onTabChange(2)">
+                    Items
+                  </ibm-tab-header>
+                  <ibm-tab-header (click)="onTabChange(3)">
+                    Tracking
+                  </ibm-tab-header>
+                </ibm-tab-header-group>
+
+                <div *ngIf="infoTab" class="flex mb-6 mt-6">
+                  <div class="app-content app-content--default">
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">assignee</div>
+                      <div class="font-bold app-body-short-01">
+                        <div class="flex items-center">
+                          <img src="assets/img/avatar/avatar3.jpg" class="w-6 rounded-full mr-2"/>
+                          <span>Jon Doe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">reporter</div>
+                      <div class="font-bold app-body-short-01">
+                        <div class="flex items-center">
+                          <img src="assets/img/avatar/avatar6.jpg" class="w-6 rounded-full mr-2"/>
+                          <span>James Robson</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">category</div>
+                      <div class="font-bold app-body-short-01">
+                        <ibm-tag type="warm-gray">enterprise</ibm-tag>
+                      </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">original estimate</div>
+                      <div class="font-bold app-body-short-01">
+                        <ibm-tag type="blue">2.5h</ibm-tag>
+                      </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">time tracking</div>
+                      <div class="app-body-short-01 flex-1">
+                        <div class="app-progress app-progress--small">
+                          <div class="app-progress__bar app-bg-success" style="width:66%"></div>
+                        </div>
+                        <div class="mt-1">10m remaining</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">sprint</div>
+                      <div class="font-bold app-body-short-01">2020 Sprint W31-32</div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">priority</div>
+                      <div class="font-bold app-body-short-01 app-color-danger">High</div>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                      <div class="app-subtitle w-24">created</div>
+                      <div class="app-label-01">
+                        November 8, 2020, 6:34 PM
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="app-subtitle w-24">updated</div>
+                      <div class="app-label-01">
+                        November 8, 2020, 8:34 PM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="itemsTab" class="flex mb-6 mt-6">
+                  <div class="app-card__content">
+
+                    <div class="flex items-center mb-2">
+                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+                           style="background-image:url(assets/img/pixabay/taj-mahal-1209004_640.jpg)">
+                      </div>
+                      <div>
+                        <div class="app-productive-heading-02">Cities</div>
+                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
+                        <div class="app-helper-text-01">122k followers</div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center mb-2">
+                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+                           style="background-image:url(assets/img/pixabay/rock-540130_640.jpg)">
+                      </div>
+                      <div>
+                        <div class="app-productive-heading-02">Nature</div>
+                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
+                        <div class="app-helper-text-01">533k followers</div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center mb-2">
+                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+                           style="background-image:url(assets/img/pixabay/orange-1377310_1920.jpg)">
+                      </div>
+                      <div>
+                        <div class="app-productive-heading-02">Paint</div>
+                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
+                        <div class="app-helper-text-01">1.2M followers</div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center mb-2">
+                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+                           style="background-image:url(assets/img/pixabay/house-569115_640.jpg)">
+                      </div>
+                      <div>
+                        <div class="app-productive-heading-02">Buildings</div>
+                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
+                        <div class="app-helper-text-01">16k followers</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div *ngIf="trackingTab" class="flex mb-6 mt-6">
+
+
+
+
+
+
+
+
+
+
+                  <div fxFlex="100%" fxFlex.gt-md="100%">
+                    <div class="app-card app-card--m-0 ">
+                      <div class="app-card__content">
+                        <div class="app-timeline">
+                          <div class="app-timeline__group" fxLayout="row wrap">
+                            <div class="app-timeline__time text-right" fxFlex="100%" fxFlex.gt-sm="105px"
+                                 ngClass.lt-sm="app-timeline__time--collapse">
+                              <div class="app-helper-text-01">October 13</div>
+                              <div class="app-helper-text-01">2020</div>
+                            </div>
+                            <div fxFlex class="app-timeline__item app-timeline__item--circle app-timeline__item--info pb-5">
+                              <div class="app-timeline__item__content">
+                                <div class="app-productive-heading-02 leading-4 mb-2">Apple Event</div>
+                                <div class="flex mb-3 app-body-short-01">
+                                  <a class="app-link mr-2">Online</a> <span>San Francisco, CA</span>
+                                </div>
+                                <div class="app-body-long-01 mb-3">
+                                  An Apple Event was held on October 13, 2020, with the tagline "Hi, Speed." It also took place as
+                                  a
+                                  virtual conference, just like the previous one held on September 15, 2020. The HomePod mini,
+                                  iPhone 12 mini, iPhone 12...
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="app-timeline__group" fxLayout="row wrap">
+                            <div class="app-timeline__time text-right" fxFlex="100%" fxFlex.gt-sm="105px"
+                                 ngClass.lt-sm="app-timeline__time--collapse">
+                              <div class="app-helper-text-01">September 15</div>
+                              <div class="app-helper-text-01">2020</div>
+                            </div>
+                            <div fxFlex class="app-timeline__item app-timeline__item--circle app-timeline__item--info pb-5">
+                              <div class="app-timeline__item__content">
+                                <div class="app-productive-heading-02 leading-4 mb-2">Apple Event</div>
+                                <div class="flex mb-3 app-body-short-01">
+                                  <a class="app-link mr-2">Online</a> <span>San Francisco, CA</span>
+                                </div>
+                                <div class="app-body-long-01 mb-3">
+                                  An Apple Event was held on September 15, 2020, with the tagline "Time flies."[62] It took place
+                                  as
+                                  a virtual conference, pre-recorded at the Apple Park. Amongst the many announcements include the
+                                  Apple Watch Series 6 and the fourth-generation iPad Air. iOS 14, iPadOS 14, watchOS 7 and tvOS
+                                  14
+                                  were released a day late
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="app-timeline__group" fxLayout="row wrap">
+                            <div class="app-timeline__time text-right" fxFlex="100%" fxFlex.gt-sm="105px"
+                                 ngClass.lt-sm="app-timeline__time--collapse">
+                              <div class="app-helper-text-01">June 22–26</div>
+                              <div class="app-helper-text-01">2020</div>
+                            </div>
+                            <div fxFlex class="app-timeline__item app-timeline__item--circle app-timeline__item--info pb-5">
+                              <div class="app-timeline__item__content">
+                                <div class="app-productive-heading-02 leading-4 mb-2">WWDC 2020</div>
+                                <div class="flex mb-3 app-body-short-01">
+                                  <a class="app-link mr-2">Apple Park</a> <span>Cupertino, California</span>
+                                </div>
+                                <div class="app-body-long-01 mb-3">
+                                  WWDC 2020 was held from June 22 to June 26. Due to the COVID-19 pandemic, the entire event took
+                                  place as a virtual conference for the first time.[61] The announcements at the online special
+                                  event keynote on June 22 included iOS 14, iPadOS 14, watchOS 7, tvOS 14, macOS Big Sur and the
+                                  Mac
+                                  transition to Apple Silicon. The keynote was recorded at Apple Park in Cupertino, California.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="app-timeline__group" fxLayout="row wrap">
+                            <div class="app-timeline__time text-right" fxFlex="100%" fxFlex.gt-sm="105px"
+                                 ngClass.lt-sm="app-timeline__time--collapse">
+                              <div class="app-helper-text-01">December 2</div>
+                              <div class="app-helper-text-01">2019</div>
+                            </div>
+                            <div fxFlex class="app-timeline__item app-timeline__item--circle app-timeline__item--info pb-5">
+                              <div class="app-timeline__item__content">
+                                <div class="app-productive-heading-02 leading-4 mb-2">Apple Special Event</div>
+                                <div class="flex mb-3 app-body-short-01">
+                                  <a class="app-link mr-2">Center</a> <span>New York, NY</span>
+                                </div>
+                                <div class="app-body-long-01 mb-3">
+                                  Apple hosted another special event in New York to honor the best apps in 2019.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="app-timeline__group" fxLayout="row wrap">
+                            <div class="app-timeline__time text-right" fxFlex="100%" fxFlex.gt-sm="105px"
+                                 ngClass.lt-sm="app-timeline__time--collapse">
+                              <div class="app-helper-text-01">September 10</div>
+                              <div class="app-helper-text-01">2019</div>
+                            </div>
+                            <div fxFlex class="app-timeline__item app-timeline__item--circle app-timeline__item--info pb-5">
+                              <div class="app-timeline__item__content">
+                                <div class="app-productive-heading-02 leading-4 mb-2">Apple Special Event</div>
+                                <div class="flex mb-3 app-body-short-01">
+                                  <a class="app-link mr-2">Apple campus</a> <span>San Francisco, CA</span>
+                                </div>
+                                <div class="app-body-long-01 mb-3">
+                                  Apple hosted a special event on September 10, 2019, with the tagline "By innovation only." It
+                                  was
+                                  held at the Steve Jobs Theater in the Apple Park campus. Apple TV+ updates, Apple Watch Series
+                                  5,
+                                  iPhone 11, iPhone 11 Pro and 11 Pro Max, and the 7th generation iPad were announced at the
+                                  event.
+                                  iOS 13 and watchOS 6 were released nine days later. iPadOS was also released the following five
+                                  days.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+              </div>
+            </ng-scrollbar>
+          </div>
+        </div>
+      </div>
+
+
+    </shaft-sidenav-container>
+  </div>
+  <!--  <div class="px-4 py-4 flex justify-end app-border-t">
+      <button (click)="onClose()"
+              ibmButton="secondary"
+              size="field"
+              class="mr-1">
+        Cancel
+      </button>
+      <button ibmButton="primary" size="field">
+        Create
+        <svg class="bx&#45;&#45;btn__icon" ibmIconAdd size="20"></svg>
+      </button>
+    </div>-->
+</div>
