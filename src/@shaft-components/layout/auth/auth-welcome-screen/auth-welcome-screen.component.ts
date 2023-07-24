@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'youpez-auth-welcome-screen',
+  selector: 'shaft-auth-welcome-screen',
   templateUrl: './auth-welcome-screen.component.html',
   styleUrls: ['./auth-welcome-screen.component.scss']
 })

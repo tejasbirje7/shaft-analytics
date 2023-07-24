@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {YoupezModule} from "../../@youpez/youpez.module"
+import {ShaftModule} from '@shaft-components/shaft.module'
 
 @NgModule({
   imports: [
     CommonModule,
-    YoupezModule,
+    ShaftModule,
   ],
   declarations: [
   ],
   exports: [
-    YoupezModule,
+    ShaftModule,
   ]
 })
 export class SharedModule {

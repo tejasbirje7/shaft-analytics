@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core'
 import {MatDialogRef} from '@angular/material/dialog'
 
 @Component({
-  selector: 'app-scrum-form',
-  templateUrl: './scrum-form.component.html',
-  styleUrls: ['./scrum-form.component.scss']
+  selector: 'app-orders-form',
+  templateUrl: './orders-form.component.html',
+  styleUrls: ['./orders-form.component.scss']
 })
-export class ScrumFormComponent implements OnInit {
+export class OrdersFormComponent implements OnInit {
 
   public project = [
     {
@@ -73,7 +73,7 @@ export class ScrumFormComponent implements OnInit {
 
 
 
-  constructor(private dialogRef: MatDialogRef<ScrumFormComponent>) {
+  constructor(private dialogRef: MatDialogRef<OrdersFormComponent>) {
   }
 
   ngOnInit(): void {

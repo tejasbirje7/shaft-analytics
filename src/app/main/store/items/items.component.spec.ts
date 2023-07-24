@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileManagerComponent } from './file-manager.component';
+import { ItemsComponent } from './items.component';
 
 describe('FileManagerComponent', () => {
-  let component: FileManagerComponent;
-  let fixture: ComponentFixture<FileManagerComponent>;
+  let component: ItemsComponent;
+  let fixture: ComponentFixture<ItemsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FileManagerComponent ]
+      declarations: [ ItemsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileManagerComponent);
+    fixture = TestBed.createComponent(ItemsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

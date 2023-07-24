@@ -63,6 +63,7 @@ export const getDummyModel = () => {
     [new TableItem({data: "Rita Compton"}), new TableItem({data: "Brazil"}), new TableItem({data: getRandomArbitrary(0, 100)}), new TableItem({data: "240"}), new TableItem({data: "0"}),],
     [new TableItem({data: "Timur Plummer"}), new TableItem({data: "Tonga"}), new TableItem({data: getRandomArbitrary(0, 100)}), new TableItem({data: "100"}), new TableItem({data: "1"}),],
     [new TableItem({data: "Khadeejah Juarez"}), new TableItem({data: "Cuba"}), new TableItem({data: getRandomArbitrary(0, 100)}), new TableItem({data: "330"}), new TableItem({data: "1"}),]
+
   ]
   return model
 }

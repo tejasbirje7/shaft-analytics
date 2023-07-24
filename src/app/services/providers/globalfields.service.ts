@@ -14,71 +14,10 @@ export class GlobalfieldsService {
     i: Number;
     userAddress = [];
     appRoutes = [];
-    dashboardRoutes = [];
-    routes = {
-        'appRoutes': [{
-            title: 'Home',
-            url: '/welcome',
-            icon: 'home'
-        },
-            {
-                title: 'My Orders',
-                url: '/orders',
-                icon: 'basket'
-            },
-            {
-                title: 'About Us',
-                url: '/aboutus',
-                icon: 'analytics'
-            },
-            {
-                title: 'Login',
-                url: '/auth',
-                icon: 'paper-plane'
-            },
-            {
-                title: 'Logout',
-                url: '/auth',
-                icon: 'paper-plane'
-            }],
-        'dashboardRoutes': [{
-            title: 'Dashboard',
-            url: '/dashboard',
-            icon: 'bar-chart'
-        },
-            {
-                title: 'Orders',
-                url: '/manage-order',
-                icon: 'basket'
-            },
-            {
-                title: 'Analytics',
-                url: '/analytics',
-                icon: 'analytics'
-            },
-            {
-                title: 'Store',
-                url: '/store',
-                icon: 'home'
-            },
-            {
-                title: 'Campaign',
-                url: '/campaign',
-                icon: 'home'
-            },
-            {
-                title: 'People',
-                url: '/people',
-                icon: 'people'
-            }
-        ]
-    };
 
     constructor(
         private localStorageService: LocalStorageService
     ) {
-        this.appRoutes = this.routes.appRoutes.slice();
-        this.dashboardRoutes = this.routes.dashboardRoutes.slice();
     }
 
     epochToJsDate(ts) {
@@ -110,7 +49,7 @@ export class GlobalfieldsService {
         this.userAddress = [];
         this.isDashboardUser = false;
         this.i = null;
-        this.disableAuthRoutes('Logout');
+        //this.disableAuthRoutes('Logout');
     }
 
     setI(id) {
@@ -142,25 +81,13 @@ export class GlobalfieldsService {
     }
 
 
-    getRoutes() {
-        return this.routes;
-    }
-
-    setTitle(title) {
-        this.title = title;
-    }
-
-    getTitle() {
-        return this.title
-    }
-
-    disableAuthRoutes(key) {
-        var aR = this.routes.appRoutes.slice();
-        for (var i = 0; i < aR.length; i++) {
-            if (aR[i]['title'] == key) {
-                aR.splice(i, 1);
-            }
-        }
-        this.appRoutes = aR;
-    }
+    // disableAuthRoutes(key) {
+    //     var aR = this.routes.appRoutes.slice();
+    //     for (var i = 0; i < aR.length; i++) {
+    //         if (aR[i]['title'] == key) {
+    //             aR.splice(i, 1);
+    //         }
+    //     }
+    //     this.appRoutes = aR;
+    // }
 }

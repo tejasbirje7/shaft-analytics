@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core'
 
 @Component({
-  selector: 'youpez-logo',
+  selector: 'shaft-logo',
   templateUrl: './app-logo.component.html',
   styleUrls: ['./app-logo.component.scss']
 })

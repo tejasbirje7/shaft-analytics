@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScrumBoardComponent } from './scrum-board.component';
+import { OrdersBoardComponent } from './orders-board.component';
 
-describe('ScrumBoardComponent', () => {
-  let component: ScrumBoardComponent;
-  let fixture: ComponentFixture<ScrumBoardComponent>;
+describe('OrdersBoardComponent', () => {
+  let component: OrdersBoardComponent;
+  let fixture: ComponentFixture<OrdersBoardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScrumBoardComponent ]
+      declarations: [ OrdersBoardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScrumBoardComponent);
+    fixture = TestBed.createComponent(OrdersBoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

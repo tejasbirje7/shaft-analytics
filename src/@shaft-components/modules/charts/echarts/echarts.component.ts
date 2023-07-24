@@ -34,7 +34,7 @@ function isChanged(param) {
 }
 
 @Component({
-  selector: 'youpez-echarts',
+  selector: 'shaft-echarts',
   templateUrl: './echarts.component.html',
   styleUrls: ['./echarts.component.scss']
 })

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScrumFormComponent } from './scrum-form.component';
+import { OrdersFormComponent } from './orders-form.component';
 
-describe('ScrumFormComponent', () => {
-  let component: ScrumFormComponent;
-  let fixture: ComponentFixture<ScrumFormComponent>;
+describe('OrdersFormComponent', () => {
+  let component: OrdersFormComponent;
+  let fixture: ComponentFixture<OrdersFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScrumFormComponent ]
+      declarations: [ OrdersFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScrumFormComponent);
+    fixture = TestBed.createComponent(OrdersFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

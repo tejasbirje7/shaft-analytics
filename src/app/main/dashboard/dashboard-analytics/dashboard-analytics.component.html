@@ -1,5 +1,5 @@
-<youpez-sidenav-container fxFill panel="panel">
-  <youpez-sidenav
+<shaft-sidenav-container fxFill panel="panel">
+  <shaft-sidenav
     [breakpoint]="'md'"
     [direction]="'right'"
     [opened]="rightSidebarVisibility"
@@ -61,16 +61,16 @@
         </div>
       </div>
     </div>
-  </youpez-sidenav>
+  </shaft-sidenav>
   <div class="app-a-box app-scrollbar-fix">
     <ng-scrollbar>
 
-      <youpez-header>
-        <youpez-header-title>
+      <shaft-header>
+        <shaft-header-title>
           Platform Analytics
-        </youpez-header-title>
+        </shaft-header-title>
 
-        <youpez-header-tools>
+        <shaft-header-tools>
           <button ibmButton="primary" size="sm" class="mr-1">
             Widget
             <svg class="bx--btn__icon" ibmIconAdd size="20"></svg>
@@ -78,8 +78,8 @@
           <button (click)="onToggleRightSidebar()" ibmButton="tertiary" size="sm" class="bx--btn--icon-only">
             <svg class="bx--btn__icon" ibmIconOpenPanelRight size="20"></svg>
           </button>
-        </youpez-header-tools>
-      </youpez-header>
+        </shaft-header-tools>
+      </shaft-header>
 
       <div fxLayout="row wrap" class="app-card-row-holder">
         <div fxFlex="100%" fxFlex.gt-lg="100%">
@@ -113,10 +113,10 @@
               <div fxFlex="100%" fxFlex.gt-lg="75%">
                 <ng-container *ngIf="!loading">
                   <div class="app-card__content">
-                    <youpez-echarts-container>
-                      <youpez-echarts [options]="mainChartOpts" class="app-echarts-component"
-                                   style="height: 400px;"></youpez-echarts>
-                    </youpez-echarts-container>
+                    <shaft-echarts-container>
+                      <shaft-echarts [options]="mainChartOpts" class="app-echarts-component"
+                                   style="height: 400px;"></shaft-echarts>
+                    </shaft-echarts-container>
                   </div>
                 </ng-container>
               </div>
@@ -201,7 +201,7 @@
                         </div>
                         <div class="app-helper-text-01">TOTAL COST</div>
                       </div>
-                      <youpez-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></youpez-ibm-icon>
+                      <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
                     </div>
                   </div>
                   <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
@@ -213,7 +213,7 @@
                         </div>
                         <div class="app-helper-text-01">TOTAL USERS</div>
                       </div>
-                      <youpez-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></youpez-ibm-icon>
+                      <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
                     </div>
                   </div>
 
@@ -226,7 +226,7 @@
                         </div>
                         <div class="app-helper-text-01">AVG DELAY</div>
                       </div>
-                      <youpez-ibm-icon iconName="arrowDown" iconSize="32" class="app-color-danger mt-1"></youpez-ibm-icon>
+                      <shaft-ibm-icon iconName="arrowDown" iconSize="32" class="app-color-danger mt-1"></shaft-ibm-icon>
                     </div>
                   </div>
 
@@ -239,7 +239,7 @@
                         </div>
                         <div class="app-helper-text-01">MEDIAN WORKLOAD</div>
                       </div>
-                      <youpez-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></youpez-ibm-icon>
+                      <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
                     </div>
                   </div>
 
@@ -252,7 +252,7 @@
                         </div>
                         <div class="app-helper-text-01">AVG PURCHASE</div>
                       </div>
-                      <youpez-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></youpez-ibm-icon>
+                      <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
                     </div>
                   </div>
                 </div>
@@ -274,17 +274,17 @@
               <div class="app-caption-01">EU/US and CTR</div>
             </div>
             <div class="">
-              <youpez-echarts-container>
-                <youpez-echarts [options]="miniChart1" class="app-echarts-component"
-                             style="height: 160px;"></youpez-echarts>
-              </youpez-echarts-container>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="miniChart1" class="app-echarts-component"
+                             style="height: 160px;"></shaft-echarts>
+              </shaft-echarts-container>
             </div>
             <div class="app-list">
               <div class="app-caption-01 mx-2 mt-3">Top cities</div>
 
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   New York
@@ -295,7 +295,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-danger">
-                  <youpez-ibm-icon iconName="arrowDown" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowDown" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Los Angeles
@@ -306,7 +306,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Berlin
@@ -317,7 +317,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Malmö
@@ -343,17 +343,17 @@
               <div class="app-caption-01">EU/US region</div>
             </div>
             <div class="">
-              <youpez-echarts-container>
-                <youpez-echarts [options]="miniChart2" class="app-echarts-component"
-                             style="height: 160px;"></youpez-echarts>
-              </youpez-echarts-container>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="miniChart2" class="app-echarts-component"
+                             style="height: 160px;"></shaft-echarts>
+              </shaft-echarts-container>
             </div>
             <div class="app-list">
               <div class="app-caption-01 mx-2 mt-3">Top versions</div>
 
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Firefox v81
@@ -364,7 +364,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Chrome v86
@@ -375,7 +375,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-success">
-                  <youpez-ibm-icon iconName="arrowUp" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowUp" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Safari v14
@@ -386,7 +386,7 @@
               </div>
               <div class="app-list__item">
                 <div class="mx-2 app-color-danger">
-                  <youpez-ibm-icon iconName="arrowDown" iconSize="16"></youpez-ibm-icon>
+                  <shaft-ibm-icon iconName="arrowDown" iconSize="16"></shaft-ibm-icon>
                 </div>
                 <div class="app-list__item__content">
                   Edge v86
@@ -430,14 +430,14 @@
               </div>
             </div>
             <div class="app-card__content">
-              <youpez-echarts-container>
-                <youpez-echarts [options]="miniChart3" class="app-echarts-component"
-                             style="height: 300px;"></youpez-echarts>
-              </youpez-echarts-container>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="miniChart3" class="app-echarts-component"
+                             style="height: 300px;"></shaft-echarts>
+              </shaft-echarts-container>
             </div>
           </div>
         </div>
       </div>
     </ng-scrollbar>
   </div>
-</youpez-sidenav-container>
+</shaft-sidenav-container>

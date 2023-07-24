@@ -31,7 +31,7 @@ export declare type SizeType =
   | 'mini'
 
 @Component({
-  selector: 'youpez-sidenav',
+  selector: 'shaft-sidenav',
   templateUrl: './app-sidenav.component.html',
   styleUrls: ['./app-sidenav.component.scss'],
 })

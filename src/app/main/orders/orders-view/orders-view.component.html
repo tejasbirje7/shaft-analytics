@@ -2,7 +2,7 @@
   <div class="px-4 pt-4">
     <div class="flex items-center">
       <div class="h-3 w-3 app-bg-info rounded-full mr-2"></div>
-      <div class="app-productive-heading-02 font-bold">YP-2340</div>
+      <div class="app-productive-heading-02 font-bold">{{orderToBeViewed}}</div>
       <div class="flex-1 flex justify-end">
         <button ibmButton="ghost" size="sm" class="bx--btn--icon-only mr-1">
           <svg class="bx--btn__icon" ibmIconLocked size="32"></svg>
@@ -41,14 +41,58 @@
                   </ibm-tab-header>
                 </ibm-tab-header-group>
 
+<!--
+{
+                "oid": 1675614111,
+                "i": 1675491889,
+                "ts": 1675614111,
+                "totalPrice": 249.5,
+                "sg": 1,
+                "customerInfo": {
+                    "name": "Tejas",
+                    "email": "tejas.birje@gmail.com",
+                    "phoneNumber": 8097036598
+                },
+                "deliveryInfo": {
+                    "recipientName": "Tejas",
+                    "recipientNumber": 8097036598,
+                    "addressLine1": "502,5th floor,Venky PG",
+                    "addressLine2": "mukai nagar,marunji road,hinjewadi",
+                    "city": "PUNE",
+                    "state": "Near Mezza 9 parking",
+                    "postcode": "411057",
+                    "country": "India"
+                },
+                "paymentInfo": {
+                    "holderName": "Tejas ",
+                    "cardNumber": 234364542523,
+                    "expiredDate": "23/23",
+                    "cvc": 234
+                },
+                "items": [
+                    {
+                        "id": "ZmFZxIEB13MVZjsuRGxE",
+                        "costPrice": 150,
+                        "quantity": 1,
+                        "option": "xs"
+                    },
+                    {
+                        "id": "XmFZxIEB13MVZjsuQmxg",
+                        "costPrice": 40,
+                        "quantity": 1,
+                        "option": "xs"
+                    }
+                ]
+            }
+-->
+
                 <div *ngIf="infoTab" class="flex mb-6 mt-6">
                   <div class="app-content app-content--default">
                     <div class="flex items-center mb-4">
                       <div class="app-subtitle w-24">assignee</div>
                       <div class="font-bold app-body-short-01">
                         <div class="flex items-center">
-                          <img src="assets/img/avatar/avatar3.jpg" class="w-6 rounded-full mr-2"/>
-                          <span>Jon Doe</span>
+                          <span>{{orderToBeViewed.customerInfo.name}}</span>
                         </div>
                       </div>
                     </div>
@@ -56,8 +100,7 @@
                       <div class="app-subtitle w-24">reporter</div>
                       <div class="font-bold app-body-short-01">
                         <div class="flex items-center">
-                          <img src="assets/img/avatar/avatar6.jpg" class="w-6 rounded-full mr-2"/>
-                          <span>James Robson</span>
+                          <span>{{orderToBeViewed.deliveryInfo.addressLine2}}</span>
                         </div>
                       </div>
                     </div>
@@ -94,13 +137,13 @@
                     <div class="flex items-center mb-4">
                       <div class="app-subtitle w-24">created</div>
                       <div class="app-label-01">
-                        November 8, 2020, 6:34 PM
+                        {{epochToJsDate(orderToBeViewed.ts)}}
                       </div>
                     </div>
                     <div class="flex items-center">
                       <div class="app-subtitle w-24">updated</div>
                       <div class="app-label-01">
-                        November 8, 2020, 8:34 PM
+                        {{epochToJsDate(orderToBeViewed.ts)}}
                       </div>
                     </div>
                   </div>
@@ -108,48 +151,14 @@
 
                 <div *ngIf="itemsTab" class="flex mb-6 mt-6">
                   <div class="app-card__content">
-
-                    <div class="flex items-center mb-2">
+                    <div *ngFor="let item of itemsInOrder" class="flex items-center mb-2">
                       <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
                            style="background-image:url(assets/img/pixabay/taj-mahal-1209004_640.jpg)">
                       </div>
                       <div>
-                        <div class="app-productive-heading-02">Cities</div>
-                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
-                        <div class="app-helper-text-01">122k followers</div>
-                      </div>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                           style="background-image:url(assets/img/pixabay/rock-540130_640.jpg)">
-                      </div>
-                      <div>
-                        <div class="app-productive-heading-02">Nature</div>
-                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
-                        <div class="app-helper-text-01">533k followers</div>
-                      </div>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                           style="background-image:url(assets/img/pixabay/orange-1377310_1920.jpg)">
-                      </div>
-                      <div>
-                        <div class="app-productive-heading-02">Paint</div>
-                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
-                        <div class="app-helper-text-01">1.2M followers</div>
-                      </div>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                      <div class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                           style="background-image:url(assets/img/pixabay/house-569115_640.jpg)">
-                      </div>
-                      <div>
-                        <div class="app-productive-heading-02">Buildings</div>
-                        <div class="truncate app-body-short-01 mb-1">Lorem ipsum dolor sit amet</div>
-                        <div class="app-helper-text-01">16k followers</div>
+                        <div class="app-productive-heading-02">{{item.name}}</div>
+                        <div class="truncate app-body-short-01 mb-1">{{item.qt}}</div>
+                        <div class="app-helper-text-01">{{item.costPrice}}</div>
                       </div>
                     </div>
                   </div>

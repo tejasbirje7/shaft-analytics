@@ -1,0 +1,148 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div class="app-card app-card--m-0">
+    <form autocomplete="off" [formGroup]="itemForm">
+      <div class="app-card__content app-form">
+
+        <!--    Name-->
+        <div class="app-form__item">
+          <ibm-label
+            [invalidText]="'This field is required or incorrect'">
+            Name
+            <input
+              formControlName="name"
+              ibmText
+              size="md"
+              [disabled]="false"
+              theme="light"
+              [placeholder]="''"
+              [autocomplete]="true">
+          </ibm-label>
+        </div>
+
+        <div fxLayout="row wrap" class="app-form__row">
+
+          <!--      Quantity-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-label
+              [helperText]="''"
+              [invalidText]="'This field is required or incorrect'">
+              Quantity
+              <input
+                formControlName="qt"
+                ibmText
+                size="md"
+                [disabled]="false"
+                theme="light"
+                [placeholder]="''"
+                [autocomplete]="true">
+            </ibm-label>
+          </div>
+
+          <!--          Price-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-label
+              [helperText]="''"
+              [invalidText]="'This field is required or incorrect'">
+              Price
+              <input
+                formControlName="costPrice"
+                ibmText
+                size="md"
+                [disabled]="false"
+                theme="light"
+                [placeholder]="''"
+                [autocomplete]="true">
+            </ibm-label>
+          </div>
+        </div>
+
+
+        <div fxLayout="row wrap" class="app-form__row">
+
+          <!--          Category-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-dropdown
+              formControlName="category"
+              [label]="'Category'"
+              size="md"
+              [invalidText]="'This field is required or incorrect'"
+              dropUp="false"
+              theme="light"
+              placeholder="">
+              <ibm-dropdown-list [items]="products"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+
+
+          <!--Options-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-dropdown
+              formControlName="options"
+              [label]="'Options'"
+              size="md"
+              [invalidText]="'This field is required or incorrect'"
+              dropUp="false"
+              theme="light"
+              placeholder="">
+              <ibm-dropdown-list [items]="purchased"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+
+
+        </div>
+
+        <div fxLayout="row wrap" class="app-form__row">
+
+          <!--          In Stock-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-dropdown
+              formControlName="inStock"
+              [label]="'In Stock'"
+              value="id"
+              size="md"
+              [invalidText]="'This field is required or incorrect'"
+              dropUp="false"
+              theme="light"
+              placeholder="">
+              <ibm-dropdown-list [items]="inStock"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+
+
+          <!--              Sale-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <ibm-dropdown
+              formControlName="onSale"
+              [label]="'Sale'"
+              value="id"
+              size="md"
+              [invalidText]="'This field is required or incorrect'"
+              dropUp="false"
+              theme="light"
+              placeholder="">
+              <ibm-dropdown-list [items]="onSale"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+        </div>
+
+
+        <!--        Description-->
+        <div class="app-form__item">
+          <ibm-label
+            [helperText]="''">
+            Description
+            <textarea
+              formControlName="description"
+              ibmTextArea
+              theme="light"
+              [rows]="5"
+              [cols]="5"
+              aria-label="textarea"></textarea>
+          </ibm-label>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+</div>

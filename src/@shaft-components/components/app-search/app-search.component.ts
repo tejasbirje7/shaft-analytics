@@ -10,7 +10,7 @@ import {
 } from '@angular/core'
 
 @Component({
-  selector: 'youpez-search',
+  selector: 'shaft-search',
   templateUrl: './app-search.component.html',
   styleUrls: ['./app-search.component.scss']
 })

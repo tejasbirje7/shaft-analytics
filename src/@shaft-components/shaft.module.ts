@@ -192,6 +192,11 @@ import {AppContentSimpleComponent} from './components/app-content/app-content-si
 import {SafePipe} from "./pipes/safe"
 import {AppLogoComponent} from './components/app-logo/app-logo.component'
 import {AppBreadcrumbComponent} from './components/app-breadcrumb/app-breadcrumb.component'
+import {ModalService} from '../app/services/providers/modal.service';
+import {ModalComponent} from '@shaft-components/components/modal/modal.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 const MainModules = [
@@ -205,6 +210,9 @@ const MainModules = [
   A11yModule,
   ReactiveFormsModule,
   MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
 ]
 
 const CarbonModules = [
@@ -382,8 +390,8 @@ const Components = [
   AppCreditCardComponent,
   AppContentSimpleComponent,
   AppLogoComponent,
-  AppLogoComponent,
   AppBreadcrumbComponent,
+  ModalComponent
 ]
 
 const Pipes = [
@@ -418,9 +426,10 @@ const Pipes = [
     NgScrollbarModule,
     NgxMdModule,
     NgxMaskModule,
-  ]
+  ],
+  providers:[ModalService]
 })
-export class YoupezModule {
+export class ShaftModule {
   constructor() {
 
   }

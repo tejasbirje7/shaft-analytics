@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AppTab} from "../../../../../@youpez"
+import {AppTab} from "../../../../../@shaft-components"
 
 @Component({
   selector: 'app-starter-full-width-tabs',

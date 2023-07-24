@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core'
 
 @Component({
-  selector: 'youpez-lock-screen',
+  selector: 'shaft-lock-screen',
   templateUrl: './app-lock-screen.component.html',
   styleUrls: ['./app-lock-screen.component.scss']
 })

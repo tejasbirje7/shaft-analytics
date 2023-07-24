@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/core';
 import { Subject } from 'rxjs';
-import {GlobalfieldsService} from './globalfields.service';
 
 
 /**
@@ -16,7 +14,6 @@ export class LocalStorageService {
 
   localStorage : Storage;
   sessionStorage : Storage;
-
   changes$ = new Subject();
 
   constructor() {

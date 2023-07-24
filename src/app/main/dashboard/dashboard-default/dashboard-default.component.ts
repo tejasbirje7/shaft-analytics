@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 
 import * as echarts from 'echarts'
-import {getDummyModel} from "../../../../@youpez/data/dummy"
+import {getDummyModel} from "../../../../@shaft-components/data/dummy"
 
 @Component({
   selector: 'app-dashboard-default',
@@ -100,6 +100,7 @@ export class DashboardDefaultComponent implements OnInit {
     }
 
     const getXAxis = (data) => {
+      // @ts-ignore
       return [...Array(data[0].length).keys()]
     }
 

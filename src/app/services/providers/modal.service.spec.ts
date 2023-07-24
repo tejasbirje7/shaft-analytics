@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ScrumFormService } from './scrum-form.service';
+import { ModalService } from './modal.service';
 
-describe('ScrumFormService', () => {
-  let service: ScrumFormService;
+describe('ModalService', () => {
+  let service: ModalService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScrumFormService);
+    service = TestBed.inject(ModalService);
   });
 
   it('should be created', () => {

@@ -2,11 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Subscription, Observable} from 'rxjs'
 
 import {SettingsService} from "../../services/settings.service"
-import {appThemes, sideBarThemes, headerThemes} from "@youpez/helpers"
+import {appThemes, sideBarThemes, headerThemes} from "../../../@shaft-components/helpers"
 import set = Reflect.set
 
 @Component({
-  selector: 'youpez-theme-settings',
+  selector: 'shaft-theme-settings',
   templateUrl: './app-theme-settings.component.html',
   styleUrls: ['./app-theme-settings.component.scss']
 })

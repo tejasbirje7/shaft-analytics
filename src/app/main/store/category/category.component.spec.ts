@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableAdvancedComponent } from './table-advanced.component';
+import { CategoryComponent } from './category.component';
 
 describe('TableAdvancedComponent', () => {
-  let component: TableAdvancedComponent;
-  let fixture: ComponentFixture<TableAdvancedComponent>;
+  let component: CategoryComponent;
+  let fixture: ComponentFixture<CategoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableAdvancedComponent ]
+      declarations: [ CategoryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableAdvancedComponent);
+    fixture = TestBed.createComponent(CategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

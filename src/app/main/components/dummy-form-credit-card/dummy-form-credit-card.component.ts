@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core'
 import {FormBuilder, FormGroup, Validators} from "@angular/forms"
-import {isFormItemValid} from "../../../../@youpez"
+import {isFormItemValid} from "../../../../@shaft-components"
 
 @Component({
   selector: 'app-dummy-form-credit-card',

@@ -25,12 +25,12 @@ export class CommonService {
       operationType : string,
       data : any = {},
       httpOptions = undefined): Observable<any> {
-    var headersObj = {
-      account:this.globalFieldService.getAccountId(),
-      operationType : operationType,
-      u : this.globalFieldService.isUserIdentified() ? String(this.globalFieldService.getUserInSession()) : "",
-      i : String(this.globalFieldService.getI()),
-      tk : this.localStorageService.get("tk") != null ? String(this.localStorageService.get("tk")).replace(/['"]+/g, '') : ""
+    const headersObj = {
+      account: this.globalFieldService.getAccountId(),
+      operationType: operationType,
+      u: this.globalFieldService.isUserIdentified() ? String(this.globalFieldService.getUserInSession()) : '',
+      i: String(this.globalFieldService.getI()),
+      tk: this.localStorageService.get('tk') != null ? String(this.localStorageService.get('tk')).replace(/['"]+/g, '') : ''
     };
     const headers = !httpOptions ? { headers : new HttpHeaders( headersObj ) } : httpOptions;
     const url = `${apiUrl}/catalog/items`;

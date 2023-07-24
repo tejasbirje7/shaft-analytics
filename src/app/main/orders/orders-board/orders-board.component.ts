@@ -1,14 +1,30 @@
-import {Component, OnInit} from '@angular/core'
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop'
-import {ScrumFormService} from "../scrum-form.service"
+import {Component, OnInit} from '@angular/core';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CommonModalService} from '../../../services/providers/common-modal.service';
+import {CommonService} from '../../../services/providers/common.service';
+import {RouteConstants} from '../../../constants/route-constants';
 
 @Component({
-  selector: 'app-scrum-board',
-  templateUrl: './scrum-board.component.html',
-  styleUrls: ['./scrum-board.component.scss']
+  selector: 'app-orders-board',
+  templateUrl: './orders-board.component.html',
+  styleUrls: ['./orders-board.component.scss']
 })
-export class ScrumBoardComponent implements OnInit {
-
+export class OrdersBoardComponent implements OnInit {
+  public orderDetails = [
+    {
+      name : "PENDING",
+      opened : true,
+      orders : []
+    },{
+      name: 'IN PROGRESS',
+      opened: true,
+      orders : []
+    },{
+      name: 'COMPLETED',
+      opened: true,
+      orders : []
+    }
+  ];
   public teamMembers = [
     {
       id: 1,
@@ -26,7 +42,7 @@ export class ScrumBoardComponent implements OnInit {
       avatar: 'assets/img/status/red.jpg',
     }
   ]
-  public selectedId: number = null
+  public selectedId: number = null;
 
   public boards = [
     {
@@ -121,14 +137,26 @@ export class ScrumBoardComponent implements OnInit {
       ]
     }
   ]
-
-  public modalTrigger
-  public modalOpened: boolean = true
-
-  constructor(private scrumFormService: ScrumFormService) {
+  constructor(
+    private commonModalService: CommonModalService,
+    private restClient: CommonService) {
   }
 
   ngOnInit(): void {
+    this._getOrders();
+  }
+
+  segregateOrders(orders) {
+    for (let i=0; i < orders.length; i++){
+      if (orders[i].sg == 1) {
+        this.orderDetails[0].orders.push(orders[i]);
+      } else if( orders[i].sg == 2 ) {
+        this.orderDetails[1].orders.push(orders[i]);
+      } else if( orders[i].sg == 3 ) {
+        this.orderDetails[2].orders.push(orders[i]);
+      }
+    }
+    console.log("Order Details : ",this.orderDetails);
   }
 
   onSelectMember(id) {
@@ -165,14 +193,52 @@ export class ScrumBoardComponent implements OnInit {
     this.boards[index].opened = !this.boards[index].opened
   }
 
-  onToggleModal(bool) {
-    this.modalOpened = bool
+  onView(orderToBeViewed) {
+    this.commonModalService.viewOrder(orderToBeViewed).afterClosed().subscribe(() => {
+
+    })
+  }
+
+  epochToJsDate(ts) {
+    return new Date(ts * 1000).toLocaleDateString();
+  }
+
+  jsDateToEpoch(d) {
+    return (d.getTime() - d.getMilliseconds()) / 1000;
   }
 
 
-  onView() {
-    this.scrumFormService.openEdit().afterClosed().subscribe(() => {
+  _getOrders(){
+    this.restClient.invokeDashboardService(RouteConstants.GET_ORDERS)
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        //console.log("Order : ",r)
+        if(r.hasOwnProperty("code") && (String(r["code"])).startsWith("S")) {
+          this.segregateOrders(r["data"])
+        }
+        console.log(this.orderDetails)
+      }, (err) => {
+        console.log(err);
+      });
+  }
 
-    })
+  _getOrderItems(data:any = {}){
+    this.restClient.invokeDashboardService(RouteConstants.GET_ITEMS_IN_ORDER,data)
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        console.log("Order : ",r)
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  _updateOrderStatus(data:any = {}){
+    this.restClient.invokeDashboardService(RouteConstants.UPDATE_ORDER_STATUS,data)
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+      }, (err) => {
+        // #TODO Render snacker of failure
+        console.log(err);
+      });
   }
 }

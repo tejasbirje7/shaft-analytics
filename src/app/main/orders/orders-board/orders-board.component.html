@@ -36,21 +36,21 @@
     <div class="app-a-box app-scrollbar-fix--horizontal ml-2">
       <ng-scrollbar track="horizontal">
         <div fxLayout="row" fxFill cdkDropListGroup>
-          <ng-container *ngFor="let board of boards;let i = index">
-            <div [fxFlex]="board.opened ? '320px' : '40px'"
+          <ng-container *ngFor="let orderStage of orderDetails;let i = index">
+            <div [fxFlex]="orderStage.opened ? '320px' : '40px'"
                  class="relative app-transition-default mb-3">
               <div fxFill fxLayout="column" class="overflow-hidden app-border-r">
-                <ng-container *ngIf="!board.opened">
+                <ng-container *ngIf="!orderStage.opened">
                   <div (click)="onToggleColumn(i)" class="app-productive-heading-01 whitespace-no-wrap cursor-pointer"
                        style="transform: rotate(270deg);margin-top: 100%;">
-                    {{board.name}}
+                    {{orderStage.name}}
                   </div>
                 </ng-container>
-                <ng-container *ngIf="board.opened">
+                <ng-container *ngIf="orderStage.opened">
                   <div class="flex items-center justify-between app-productive-heading-01 px-3 pt-2 pb-1">
                     <div>
-                      <span class="cursor-pointer">{{board.name}}</span>
-                      <span class="text-muted ml-3">({{board.tasks.length}})</span>
+                      <span class="cursor-pointer">{{orderStage.name}}</span>
+                      <span class="text-muted ml-3">({{orderStage.orders.length}})</span>
                     </div>
                     <button
                       (click)="onToggleColumn(i)"
@@ -63,13 +63,13 @@
                   <div fxFlex class="relative">
                     <div class="app-a-box app-scrollbar-fix"
                          cdkDropList
-                         [cdkDropListData]="board.tasks"
+                         [cdkDropListData]="orderStage.orders"
                          (cdkDropListDropped)="drop($event)">
                       <ng-scrollbar track="vertical">
                         <div class="px-1">
-                          <ng-container *ngFor="let task of board.tasks">
+                          <ng-container *ngFor="let task of orderStage.orders">
                             <div class="app-card cursor-move"
-                                 (click)="onView()"
+                                 (click)="onView(task)"
                                  [ngClass]="{'app-card--bt-danger-vertical': task.important}"
                                  cdkDrag
                                  style="">
@@ -77,19 +77,19 @@
                                 <div class="flex items-center">
                                   <div class="app-expressive-heading-02 mb-4">
                                     {{task.description}}
-                                    John Doe
+                                    {{task.customerInfo.name}}
                                     <br>
                                     {{task.landmark}}
                                     <br>
                                     <shaft-ibm-icon iconName="time" iconSize="16"></shaft-ibm-icon>
-                                    <span class="ml-1">26.10.2020</span>
+                                    <span class="ml-1">{{epochToJsDate(task.ts)}}</span>
                                   </div>
                                   <div class="flex flex-1 items-center justify-end">
-                                    <div class="mr-2 font-bold">{{task.price}} ₹</div>
+                                    <div class="mr-2 font-bold">{{task.totalPrice}} ₹</div>
                                   </div>
                                 </div>
                                 <div class="app-label-01">
-                                  <span class="font-bold">Items : {{task.item}}</span>
+                                  <span class="font-bold">Items : {{task.items.length}}</span>
                                 </div>
                                 <div class="app-label-01 mt-1">
                                   <span class="font-bold">Categories : {{task.category}}</span>
@@ -98,7 +98,7 @@
                                   <img class="w-6 h-6 rounded-full" [src]="getUserAvatarById(task.userId)"/>
                                   <ibm-tag class="app-ibm-tag-list" type="cool-gray">2h 50m</ibm-tag>
                                   <div class="flex flex-1 items-center justify-end">
-                                    <div class="mr-2">AA-2052</div>
+                                    <div class="mr-2">{{task.oid}}</div>
                                   </div>
                                 </div>
                               </div>

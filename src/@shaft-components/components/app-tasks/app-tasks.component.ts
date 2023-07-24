@@ -13,7 +13,7 @@ export function getUniqueId(parts: number): string {
 }
 
 @Component({
-  selector: 'youpez-tasks-list',
+  selector: 'shaft-tasks-list',
   templateUrl: './app-tasks.component.html',
   styleUrls: ['./app-tasks.component.scss']
 })
