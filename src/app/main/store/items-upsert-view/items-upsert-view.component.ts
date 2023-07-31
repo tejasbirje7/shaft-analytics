@@ -10,35 +10,37 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ItemsUpsertViewComponent implements OnInit {
 
-  products =[];
   itemForm = new FormGroup({
     'name': new FormControl("",[Validators.required]),
     'category': new FormControl("",[Validators.required]),
     'costPrice' : new FormControl(0,[Validators.required]),
     'description' : new FormControl("",[Validators.required]),
     'qt': new FormControl(0),
-    'options': new FormControl(''),
+    'options': new FormControl([]),
     'inStock': new FormControl(''),
     'onSale' : new FormControl('')
   });
-  options = []
-  inStock = [
-    {id: true, content:"true"},
-    {id: false, content:"false"}
-  ]
-  onSale =  [
-    {id: true, content:"true"},
-    {id: false, content:"false"}
-  ]
+  inStock = [ true, false ];
+  onSale =  [ true, false];
+  sizeList: [];
+  isSizeOptionsRequired = false;
+  isInStockRequired = true;
+  isOnSaleRequired = true;
+  isQuantityRequired = true;
+  itemToBeViewed : ItemToBeViewed;
+  categories
+
 
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public itemToBeViewed: any,
+    @Inject(MAT_DIALOG_DATA) public modalData: any,
     private restClient: CommonService,
     private dialogRef: MatDialogRef<ItemsUpsertViewComponent>) {
   }
 
   ngOnInit(): void {
+    console.log("Modal Data ",this.modalData)
+    this.categories = this.modalData.categories;
     this.patchValues();
   }
 
@@ -47,6 +49,7 @@ export class ItemsUpsertViewComponent implements OnInit {
   }
 
   patchValues(){
+    this.itemToBeViewed = this.modalData.itemToBeViewed;
     this.itemForm.patchValue({
       name : this.itemToBeViewed.name,
       category : this.itemToBeViewed.category,
@@ -57,9 +60,21 @@ export class ItemsUpsertViewComponent implements OnInit {
       inStock: this.itemToBeViewed.inStock,
       onSale: this.itemToBeViewed.onSale
     });
-    this.options = this.itemToBeViewed.options;
-    console.log("ItemsForm : ",this.itemForm.value);
+    this.sizeList = this.itemToBeViewed.options;
   }
 
+  onSubmit() {
+    console.log("Item form : ",this.itemForm.value);
+  }
+}
 
+export interface ItemToBeViewed {
+  name : String;
+  category : any;
+  costPrice : Number;
+  description : String;
+  qt : Number;
+  options : [];
+  inStock : boolean;
+  onSale : boolean
 }

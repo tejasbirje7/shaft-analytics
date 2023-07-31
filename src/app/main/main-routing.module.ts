@@ -6,8 +6,8 @@ import {DashboardDefaultComponent} from "./dashboard/dashboard-default/dashboard
 import {DashboardAnalyticsComponent} from "./dashboard/dashboard-analytics/dashboard-analytics.component"
 import {OrdersBoardComponent} from "./orders/orders-board/orders-board.component"
 import {ItemsComponent} from "./store/items/items.component"
-import {TableFullComponent} from './engagement/campaign/saved/table-full.component';
-import {SupportComponent} from './engagement/campaign/creation/support.component';
+import {CampaignSavedComponent} from './engagement/campaign/saved/campaign-saved.component';
+import {CampaignCreationComponent} from './engagement/campaign/creation/campaign-creation.component';
 import {ChartsComponent} from './engagement/analytics/filter/charts.component';
 import {FaqComponent} from './user/segment/faq.component';
 import {ProfileComponent} from './user/profile/profile.component';
@@ -74,21 +74,21 @@ const routeForPages = [
     children: [
       {
         path: 'campaign/create',
-        component: SupportComponent,
+        component: CampaignCreationComponent,
         data: {
           breadcrumb: 'create'
         },
       },
       {
         path: 'campaign/saved',
-        component: TableFullComponent,
+        component: CampaignSavedComponent,
         data: {
           breadcrumb: 'saved'
         },
       },
       {
         path: 'analytics/create',
-        component: SupportComponent,
+        component: CampaignCreationComponent,
         data: {
           breadcrumb: 'create'
         },

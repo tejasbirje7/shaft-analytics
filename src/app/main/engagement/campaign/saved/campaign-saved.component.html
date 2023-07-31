@@ -1,0 +1,63 @@
+<div class="app-a-box app-scrollbar-fix">
+  <shaft-header>
+  </shaft-header>
+  <ng-scrollbar>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex="100%" fxFlex.gt-md="80%" fxFlex.gt-lg="70%" class="app-content app-content--default">
+        <div class="app-productive-heading-06 mb-8">
+          Campaigns
+        </div>
+        <ng-container *ngFor="let group of faq">
+          <div class="mb-6">
+            <div class="app-productive-heading-03 mb-2">{{group.groupName}}</div>
+            <div class="app-card app-card--m-0">
+              <div class="app-card__content__fill p-0">
+                <ibm-accordion>
+                  <div *ngFor="let question of group.children">
+                    <ibm-accordion-item [title]="question.title">
+
+                      <mat-toolbar class="app-card app-card--m-0">
+                        <div mat-dialog-actions>
+                          <mat-label style="color: deeppink;font-weight: bold" >Tejas - 128 Users</mat-label>
+                        </div>
+                      </mat-toolbar>
+
+                      <!--                      <app-charts [(chartData)]=chartDta></app-charts>-->
+                      <div fxFlex="100%" fxFlex.gt-md="100%">
+                        <div fxLayout="row wrap" class="mb-2 app-card-row">
+                          <ng-container *ngFor="let chart of charts">
+                            <div fxFlex="100%">
+                              <div class="app-card p-0">
+                                <shaft-echarts-container>
+                                  <shaft-echarts [options]="chart" class="app-echarts-component"
+                                                 style="height: 400px;"></shaft-echarts>
+                                </shaft-echarts-container>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div fxLayout="column" fxLayoutAlign="center" class="app-body-short-01 app-card app-card--m-0">
+                        <mat-label style="color: deeppink" class="app-productive-heading-02 ml-3">Date Range</mat-label>
+                        <mat-card-subtitle class="app-productive-heading-01 mt-2 ml-4">30-AUG-2020 to 29-SEP-2020
+                        </mat-card-subtitle>
+                        <mat-label style="color: deeppink;font-weight: bolder" class="mt-3 ml-3">User's who did</mat-label>
+                        <mat-card-subtitle *ngFor="let f of filterStrings.whoDid" style="padding: 5px;font-weight: bold" class="ml-4">• {{ f }}</mat-card-subtitle>
+                        <br>
+                        <mat-label style="color: deeppink;font-weight: bolder" class="mt-3 ml-3">User's who didn't do</mat-label>
+                        <mat-card-subtitle *ngFor="let f of filterStrings.didNot"  style="padding: 5px;font-weight: bold" class="ml-4">• {{ f }}</mat-card-subtitle>
+                        <br>
+                        <mat-label style="color: deeppink;font-weight: bolder" class="mt-3 ml-3">Common Properties</mat-label>
+                        <mat-card-subtitle *ngFor="let f of filterStrings.commonProp"  style="padding: 5px;font-weight: bold" class="ml-4">•{{ f }}</mat-card-subtitle>
+                      </div>
+                    </ibm-accordion-item>
+                  </div>
+                </ibm-accordion>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-scrollbar>
+</div>

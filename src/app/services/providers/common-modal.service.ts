@@ -11,7 +11,7 @@ export class CommonModalService {
   private orderModal: MatDialogRef<OrdersViewComponent>
   private itemEditModal: MatDialogRef<ItemsUpsertViewComponent>
 
-  constructor(private dialog: MatDialog,) {
+  constructor(private dialog: MatDialog) {
   }
 
   upsertItem(itemToBeViewed) {
@@ -21,15 +21,13 @@ export class CommonModalService {
     config.viewContainerRef = null
     config.disableClose = false
     config.role = 'dialog'
-    config.width = '550px'
-    config.height = '650px'
+    config.width = '450px'
+    config.height = '550px'
     config.data = itemToBeViewed
 
     this.itemEditModal = this.dialog.open(ItemsUpsertViewComponent, config)
     return this.itemEditModal
   }
-
-
 
   viewOrder(orderToBeViewed) {
     this.orderModal = null

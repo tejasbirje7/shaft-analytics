@@ -4,55 +4,29 @@
       <div class="app-card__content app-form">
 
         <!--    Name-->
-        <div class="app-form__item">
-          <ibm-label
-            [invalidText]="'This field is required or incorrect'">
-            Name
-            <input
-              formControlName="name"
-              ibmText
-              size="md"
-              [disabled]="false"
-              theme="light"
-              [placeholder]="''"
-              [autocomplete]="true">
-          </ibm-label>
+        <div class="app-form__item mt-5">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
         </div>
 
         <div fxLayout="row wrap" class="app-form__row">
 
           <!--      Quantity-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-label
-              [helperText]="''"
-              [invalidText]="'This field is required or incorrect'">
-              Quantity
-              <input
-                formControlName="qt"
-                ibmText
-                size="md"
-                [disabled]="false"
-                theme="light"
-                [placeholder]="''"
-                [autocomplete]="true">
-            </ibm-label>
+            <mat-form-field *ngIf="isQuantityRequired">
+              <mat-label>Quantity</mat-label>
+              <input type="number" matInput formControlName="qt">
+            </mat-form-field>
           </div>
 
           <!--          Price-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-label
-              [helperText]="''"
-              [invalidText]="'This field is required or incorrect'">
-              Price
-              <input
-                formControlName="costPrice"
-                ibmText
-                size="md"
-                [disabled]="false"
-                theme="light"
-                [placeholder]="''"
-                [autocomplete]="true">
-            </ibm-label>
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input type="number" matInput formControlName="costPrice">
+            </mat-form-field>
           </div>
         </div>
 
@@ -61,85 +35,68 @@
 
           <!--          Category-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-dropdown
-              formControlName="category"
-              [label]="'Category'"
-              size="md"
-              [invalidText]="'This field is required or incorrect'"
-              dropUp="false"
-              theme="light"
-              placeholder="">
-              <ibm-dropdown-list [items]="products"></ibm-dropdown-list>
-            </ibm-dropdown>
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category">
+                <mat-option *ngFor="let cat of categories" [value]="cat.name">{{cat.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
 
           <!--Options-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-dropdown
-              formControlName="options"
-              [label]="'Options'"
-              size="md"
-              [invalidText]="'This field is required or incorrect'"
-              dropUp="false"
-              theme="light"
-              placeholder="">
-              <ibm-dropdown-list [items]="purchased"></ibm-dropdown-list>
-            </ibm-dropdown>
+            <mat-form-field *ngIf="isSizeOptionsRequired">
+              <mat-label>Size</mat-label>
+              <mat-select #sl formControlName="options" multiple>
+                <button style="margin-left: 35%;margin-top: 10px;margin-bottom: 10px" color="accent" (click)="sl.close()" mat-raised-button>Done</button>
+                <mat-option *ngFor="let size of sizeList" [value]="size.value">{{ size.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
 
         </div>
 
-        <div fxLayout="row wrap" class="app-form__row">
+        <div fxLayout="row wrap" class="app-foisInStockRequiredrm__row">
 
           <!--          In Stock-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-dropdown
-              formControlName="inStock"
-              [label]="'In Stock'"
-              value="id"
-              size="md"
-              [invalidText]="'This field is required or incorrect'"
-              dropUp="false"
-              theme="light"
-              placeholder="">
-              <ibm-dropdown-list [items]="inStock"></ibm-dropdown-list>
-            </ibm-dropdown>
+            <mat-form-field *ngIf="isInStockRequired">
+              <mat-label>In Stock</mat-label>
+              <mat-select #sl formControlName="inStock">
+                <button style="margin-left: 35%;margin-top: 10px;margin-bottom: 10px"  color="accent" (click)="sl.close()" mat-raised-button>Done</button>
+                <mat-option *ngFor="let isInStock of inStock" [value]="isInStock">{{ isInStock }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
 
           <!--              Sale-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <ibm-dropdown
-              formControlName="onSale"
-              [label]="'Sale'"
-              value="id"
-              size="md"
-              [invalidText]="'This field is required or incorrect'"
-              dropUp="false"
-              theme="light"
-              placeholder="">
-              <ibm-dropdown-list [items]="onSale"></ibm-dropdown-list>
-            </ibm-dropdown>
+            <mat-form-field *ngIf="isOnSaleRequired">
+              <mat-label>On Sale</mat-label>
+              <mat-select #sl formControlName="onSale">
+                <button style="margin-left: 35%;margin-top: 10px;margin-bottom: 10px"  color="accent" (click)="sl.close()" mat-raised-button>Done</button>
+                <mat-option *ngFor="let isOnSale of onSale" [value]="isOnSale">{{ isOnSale }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
 
 
         <!--        Description-->
         <div class="app-form__item">
-          <ibm-label
-            [helperText]="''">
-            Description
-            <textarea
-              formControlName="description"
-              ibmTextArea
-              theme="light"
-              [rows]="5"
-              [cols]="5"
-              aria-label="textarea"></textarea>
-          </ibm-label>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
         </div>
+
+        <mat-toolbar class="center">
+          <button style="margin-right: 10px" mat-raised-button color="accent">Add</button>
+          <button style="margin-right: 10px" mat-raised-button type="reset" color="accent">Reset</button>
+        </mat-toolbar>
 
 
       </div>

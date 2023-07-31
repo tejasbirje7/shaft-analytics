@@ -33,7 +33,7 @@ export class CommonService {
       tk: this.localStorageService.get('tk') != null ? String(this.localStorageService.get('tk')).replace(/['"]+/g, '') : ''
     };
     const headers = !httpOptions ? { headers : new HttpHeaders( headersObj ) } : httpOptions;
-    const url = `${apiUrl}/catalog/items`;
+    const url = `${apiUrl}/${operationType}`;
     return this.http.post(url, data, headers)
         .pipe(
             catchError(this.handleError)

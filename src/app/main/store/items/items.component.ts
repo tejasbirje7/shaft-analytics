@@ -66,14 +66,31 @@ export class ItemsComponent implements OnInit {
     this.isDetailsOpened = false
   }
 
+  populateModalData(itemSelected) {
+    this._getCategories()
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        let modalData = {};
+        modalData["itemToBeViewed"] = itemSelected;
+        modalData["categories"] = r.data;
+        this.onView(modalData);
+      }, (err) => {
+        console.log(err);
+      });
+  }
 
-  onView(itemToBeViewed) {
-    this.modal.upsertItem(itemToBeViewed).afterClosed().subscribe(() => {
+
+  onView(modalData) {
+    this.modal.upsertItem(modalData).afterClosed().subscribe(() => {
 
     })
   }
 
   _getItems(){
     return this.restClient.invokeDashboardService(RouteConstants.GET_ITEMS);
+  }
+
+  _getCategories(){
+    return this.restClient.invokeDashboardService(RouteConstants.GET_CATEGORIES);
   }
 }

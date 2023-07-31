@@ -1,0 +1,47 @@
+mat-slider {
+  width: 250px;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+}
+
+.example-margin {
+  margin: 10px;
+}
+
+.bell-icon{
+  margin-left:250px!important;
+  margin-top: 10px;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+ion-content{
+  --background-repeat: no-repeat;
+  --background-size: cover;
+}
+
+mat-icon{
+  margin-left: 5px;
+  transform: scale(1.2);
+}
+

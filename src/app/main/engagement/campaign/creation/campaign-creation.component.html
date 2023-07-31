@@ -1,0 +1,66 @@
+<div *ngIf=eventsMetaLoaded class="app-a-box app-scrollbar-fix">
+  <shaft-header>
+  </shaft-header>
+  <ng-scrollbar>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex="100%" fxFlex.gt-md="70%" fxFlex.gt-lg="50%" class="app-content app-content--default">
+        <mat-card>
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="color: indigo;font-weight: bolder" >
+                  Target users
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <app-query-builder [(triggerEvent)]=needTriggerEvent [(eventsMeta)]="eventsMeta" (onChange)="getQuery($event)" #query></app-query-builder>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="query.createFilters();nextStep()">Next</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="color: indigo;font-weight: bolder" >
+                  Content to render
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Country</mat-label>
+                <input matInput>
+              </mat-form-field>
+
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button mat-button color="primary" (click)="nextStep()">Next</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card>
+        <br>
+        <mat-toolbar class="center">
+          <button mat-raised-button class="done-button" style="margin-right: 20px">Cancel</button>
+          <br>
+          <button mat-raised-button class="done-button" (click)="openModal('filterName')" >Create</button>
+        </mat-toolbar>
+      </div>
+    </div>
+  </ng-scrollbar>
+
+</div>
+
+<app-modal style="text-align: center" id="filterName">
+  <form class="parent">
+    <mat-form-field class="center">
+      <mat-label>Filter Name</mat-label>
+      <input [formControl]="filterName" matInput style="color: black;font-weight: bolder">
+    </mat-form-field>
+  </form>
+  <mat-toolbar class="center">
+    <div class="center" mat-dialog-actions>
+      <button mat-button color=accent (click)="closeModal('filterName')">Cancel</button>
+      <button mat-raised-button color=accent (click)="createFilters()">Create</button>
+    </div>
+  </mat-toolbar>
+</app-modal>

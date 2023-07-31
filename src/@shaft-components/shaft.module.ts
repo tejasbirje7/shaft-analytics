@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {NavigationEnd, NavigationStart, Router, RouterModule} from '@angular/router'
-import {ReactiveFormsModule} from "@angular/forms"
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxMdModule} from 'ngx-md'
 import {NgxMaskModule, IConfig} from 'ngx-mask'
 
@@ -197,6 +197,23 @@ import {ModalComponent} from '@shaft-components/components/modal/modal.component
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatListModule} from '@angular/material/list';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonModule} from '@angular/material/button';
+import {QueryBuilderComponent} from '@shaft-components/components/query-builder/query-builder-component/query-builder.component';
 
 
 const MainModules = [
@@ -208,11 +225,33 @@ const MainModules = [
   NgbTooltipModule,
   DragDropModule,
   A11yModule,
-  ReactiveFormsModule,
+  ReactiveFormsModule
+]
+
+const MaterialModules = [
+  MatCardModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatSelectModule,
   MatInputModule,
-  MatSelectModule
+  MatFormFieldModule,
+  ReactiveFormsModule,
+  FormsModule,
+  MatDividerModule,
+  MatButtonModule,
+  MatRadioModule,
+  MatChipsModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatStepperModule,
+  MatExpansionModule,
+  MatListModule,
+  MatBadgeModule,
+  MatTabsModule,
+  MatRippleModule,
+  MatSlideToggleModule,
+  MatSliderModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 
 const CarbonModules = [
@@ -391,6 +430,7 @@ const Components = [
   AppContentSimpleComponent,
   AppLogoComponent,
   AppBreadcrumbComponent,
+  QueryBuilderComponent,
   ModalComponent
 ]
 
@@ -406,6 +446,7 @@ const Pipes = [
     ...MainModules,
     ...CarbonIconModules,
     ...CarbonModules,
+    ...MaterialModules,
     NgScrollbarModule.withConfig({
       visibility: 'hover',
     }),
@@ -422,6 +463,7 @@ const Pipes = [
     ...MainModules,
     ...CarbonIconModules,
     ...CarbonModules,
+    ...MaterialModules,
     ...Pipes,
     NgScrollbarModule,
     NgxMdModule,

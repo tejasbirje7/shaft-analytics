@@ -1,0 +1,218 @@
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step *ngIf="triggerEvent">
+    <ng-template style="color: black;font-weight: bolder" matStepLabel>Trigger Event</ng-template>
+    <mat-label (click)="triggerEventTransaction('edit')" style="color: deeppink;font-weight: bolder" class="unifont"> {{ triggerEventString }} </mat-label>
+    <br>
+    <div class="center" *ngIf="triggerEventString.length <= 0" mat-dialog-actions>
+      <button mat-button style="font-weight: bolder; color: indigo" (click)="triggerEventTransaction('add')">Add</button>
+      <button mat-button style="font-weight: bolder;color: indigo" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template style="color: black;font-weight: bolder" matStepLabel>User's who did</ng-template>
+    <mat-nav-list *ngFor="let f of whoDidFilter; let i = index">
+      <a mat-list-item (click)="filterAction('edit','whoDid',i)">
+        <span mat-line>Filter {{i + 1}}</span>
+      </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <br>
+    <div class="center" mat-dialog-actions>
+      <button mat-button style="font-weight: bolder; color: indigo"
+              (click)="filterAction('add','whoDid')">Add
+      </button>
+      <button mat-button style="font-weight: bolder;color: indigo" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template style="color: black;font-weight: bolder" matStepLabel>User's who didn't do
+    </ng-template>
+    <mat-nav-list *ngFor="let f of whoDidntFilter; let i = index">
+      <a mat-list-item (click)="filterAction('edit','didNot',i)">
+        <span mat-line>Filter {{i + 1}}</span>
+      </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <br>
+    <div class="center" mat-dialog-actions>
+      <button mat-button style="font-weight: bolder;color: indigo"
+              (click)="filterAction('add', 'didNot')">Add
+      </button>
+      <button mat-button style="font-weight: bolder;color: indigo" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template style="color: black;font-weight: bolder" matStepLabel>Common properties
+    </ng-template>
+    <mat-nav-list *ngFor="let f of commonProp; let i = index">
+      <a mat-list-item (click)="filterAction('edit','commonProp',i)">
+        <span mat-line>Filter {{i + 1}}</span>
+      </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <br>
+    <div class="center" mat-dialog-actions>
+      <button mat-button style="font-weight: bolder;color: indigo"
+              (click)="filterAction('add', 'commonProp')">Add
+      </button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+
+<app-modal id="triggerEvent">
+  <mat-toolbar style="background-color: white;height: 50%;font-size: 15px" class="center">
+    <mat-card-header style="margin-right: 10%;color: black;font-weight: bolder"> After performing the selected event</mat-card-header>
+  </mat-toolbar>
+  <mat-card>
+    <div class="parent" [formGroup]="triggerEventForm">
+      <!--      EVENT NAME     -->
+      <mat-form-field color='accent'>
+        <mat-label>Event</mat-label>
+        <mat-select type="number" (selectionChange)="populateProps($event,0)" style="color: black;font-weight: bolder" formControlName="e" required>
+          <mat-option type="number" style="color: black;font-weight: bolder"
+                      *ngFor="let event of performedEvents" [value]="event.eid">
+            {{ event.nm }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="fe" style="font-weight: bolder;color: indigo">Filter</mat-slide-toggle>
+
+      <!--      ITEMS     -->
+      <mat-form-field color='accent' *ngIf="triggerEventForm.controls.fe.value ==true">
+        <mat-label>Field</mat-label>
+        <mat-select style="color: black;font-weight: bolder" formControlName="f">
+          <mat-option style="color: black;font-weight: bolder" *ngFor="let p of prop[0]"
+                      value="{{ p.nm }}">
+            {{ p.nm }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--      OPERATOR     -->
+      <mat-form-field color='accent' *ngIf="triggerEventForm.controls.fe.value == true">
+        <mat-label>Operator</mat-label>
+        <mat-select style="color: black;font-weight: bolder" formControlName="o">
+          <mat-option style="color: black;font-weight: bolder" *ngFor="let op of operators"
+                      [value]="op.nm">
+            {{ op.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--      VALUE     -->
+      <mat-form-field color='accent' *ngIf="triggerEventForm.controls.fe.value == true">
+        <mat-label>Value</mat-label>
+        <input formControlName="v" matInput style="color: black;font-weight: bolder">
+      </mat-form-field>
+      <br>
+    </div>
+  </mat-card>
+  <mat-toolbar class="center">
+    <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="triggerEventTransaction('submit')">Done</button>
+    <br>
+    <button mat-raised-button class="done-button">Cancel</button>
+  </mat-toolbar>
+</app-modal>
+
+<app-modal id=filter>
+<ng-container>
+  <mat-toolbar style="background-color: white;height: 50%;font-size: 15px" class="center">
+    <mat-card-header style="margin-right: 10%;color: black;font-weight: bolder">Events, may or may not have
+      performed
+    </mat-card-header>
+  </mat-toolbar>
+  <form [formGroup]="filterForm">
+    <div *ngFor="let query of t.controls; let i = index">
+      <mat-card>
+        <mat-icon class="bell-icon" color="black" name="close" (click)="removeQuery(i)"></mat-icon>
+        <div class="parent" [formGroup]="query">
+
+          <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input  [rangePicker]="picker">
+              <input matStartDate formControlName="sT" placeholder="Start date">
+              <input matEndDate formControlName="eT"  placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
+
+          <!--      EVENT NAME     -->
+          <mat-form-field color='accent'>
+            <mat-label>Event</mat-label>
+            <mat-select type="number" (selectionChange)="populateProps($event,i)" style="color: black;font-weight: bolder" formControlName="e"
+                        [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].e.errors }"
+                        required>
+              <mat-option type="number" style="color: black;font-weight: bolder"
+                          *ngFor="let event of performedEvents" [value]="event.eid">
+                {{ event.nm }}
+              </mat-option>
+            </mat-select>
+            <div *ngIf="filterFormSubmitted && query['controls'].e.errors">
+              <div *ngIf="query['controls'].e.errors.required">Select atleast one event</div>
+            </div>
+          </mat-form-field>
+
+          <mat-slide-toggle formControlName="fe" style="font-weight: bolder;color: indigo"
+                            (click)="toggleFilter(i)">Filter
+          </mat-slide-toggle>
+
+
+          <!--      ITEMS     -->
+          <!--                        <mat-form-field color='accent' *ngIf="query['controls'].o.value == 'eq'">-->
+          <mat-form-field color='accent' *ngIf="query['controls'].fe.value ==true">
+            <mat-label>Field</mat-label>
+            <mat-select style="color: black;font-weight: bolder" formControlName="f"
+                        [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].f.errors }">
+              <mat-option style="color: black;font-weight: bolder" *ngFor="let p of prop[i]"
+                          value="{{ p.nm }}">
+                {{ p.nm }}
+              </mat-option>
+            </mat-select>
+            <div *ngIf="filterFormSubmitted && query['controls'].f.errors">
+              <div *ngIf="query['controls'].f.errors.required">Select atleast one field</div>
+            </div>
+          </mat-form-field>
+
+          <!--      OPERATOR     -->
+          <mat-form-field color='accent' *ngIf="query['controls'].fe.value == true">
+            <mat-label>Operator</mat-label>
+            <mat-select style="color: black;font-weight: bolder" formControlName="o"
+                        [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].o.errors }">
+              <mat-option style="color: black;font-weight: bolder" *ngFor="let op of operators"
+                          [value]="op.nm">
+                {{ op.label }}
+              </mat-option>
+            </mat-select>
+            <div *ngIf="filterFormSubmitted && query['controls'].o.errors">
+              <div *ngIf="query['controls'].o.errors.required">Select atleast one operator</div>
+            </div>
+          </mat-form-field>
+
+          <!--      VALUE     -->
+          <!--                        <mat-form-field color='accent' *ngIf="query['controls'].o.value != 'EQ'">-->
+          <mat-form-field color='accent' *ngIf="query['controls'].fe.value == true">
+            <mat-label>Value</mat-label>
+            <input formControlName="v" matInput style="color: black;font-weight: bolder">
+          </mat-form-field>
+
+          <br>
+        </div>
+      </mat-card>
+    </div>
+    <mat-toolbar class="center">
+      <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="filterAction('submit')">Done</button>
+      <br>
+      <button mat-raised-button class="done-button">Cancel</button>
+      <br>
+      <mat-icon class="addCircle" (click)="addQuery()">add_circle</mat-icon>
+    </mat-toolbar>
+  </form>
+</ng-container>
+</app-modal>

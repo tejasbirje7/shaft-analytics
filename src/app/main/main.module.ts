@@ -32,8 +32,8 @@ import {DummyFormBillingComponent} from './components/dummy-form-billing/dummy-f
 import {DummyFormWizardComponent} from './components/dummy-form-wizard/dummy-form-wizard.component'
 import {OrdersBoardComponent} from './orders/orders-board/orders-board.component'
 import {OrdersViewComponent} from './orders/orders-view/orders-view.component'
-import {TableFullComponent} from './engagement/campaign/saved/table-full.component';
-import {SupportComponent} from './engagement/campaign/creation/support.component';
+import {CampaignSavedComponent} from './engagement/campaign/saved/campaign-saved.component';
+import {CampaignCreationComponent} from './engagement/campaign/creation/campaign-creation.component';
 import {ChartsComponent} from './engagement/analytics/filter/charts.component';
 import {FaqComponent} from './user/segment/faq.component';
 import {ProfileComponent} from './user/profile/profile.component';
@@ -45,6 +45,7 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -75,25 +76,26 @@ import {MatSelectModule} from '@angular/material/select';
     ItemsUpsertViewComponent,
     TableBasicComponent,
     CategoryComponent,
-    TableFullComponent,
-    SupportComponent,
+    CampaignSavedComponent,
+    CampaignCreationComponent,
     ChartsComponent,
     FaqComponent,
     ProfileComponent,
     InvoiceComponent
   ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    LayoutModule,
-    SharedModule,
-    ChartsModule,
-    AgGridModule.withComponents([]),
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        LayoutModule,
+        SharedModule,
+        ChartsModule,
+        AgGridModule.withComponents([]),
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule
+    ]
 })
 export class MainModule {
 }

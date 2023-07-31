@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableFullComponent } from './table-full.component';
+import { CampaignCreationComponent } from './campaign-creation.component';
 
-describe('TableFullComponent', () => {
-  let component: TableFullComponent;
-  let fixture: ComponentFixture<TableFullComponent>;
+describe('CampaignCreationComponent', () => {
+  let component: CampaignCreationComponent;
+  let fixture: ComponentFixture<CampaignCreationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableFullComponent ]
+      declarations: [ CampaignCreationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableFullComponent);
+    fixture = TestBed.createComponent(CampaignCreationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
