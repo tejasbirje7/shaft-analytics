@@ -132,7 +132,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       children: [
         {
           name: 'Profile',
-          url: 'profile',
+          url: '/app/profile',
           prefix: {
             type: 'ibm-icon',
             name: 'faceActivated',
@@ -140,7 +140,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         },
         {
           name: 'Segment',
-          url: 'segment',
+          url: '/app/segment',
           prefix: {
             type: 'ibm-icon',
             name: 'userAvatar',
@@ -154,7 +154,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       children: [
         {
           name: 'Billing',
-          url: 'billing',
+          url: '/app/billing',
           prefix: {
             type: 'ibm-icon',
             name: 'document',
@@ -162,11 +162,29 @@ export class LayoutComponent implements OnInit, OnDestroy {
         },
         {
           name: 'Events',
-          url: 'events',
+          url: '/app/events',
           prefix: {
             type: 'ibm-icon',
             name: 'magicWand',
           }
+        },
+        {
+          name: 'Template',
+          url: '/app/template',
+          prefix: {
+            type: 'ibm-icon',
+            name: 'imageSearch',
+          },
+          children: [
+            {
+              name: 'Images',
+              url: '/app/template/images'
+            },
+            {
+              name: 'Page Contents',
+              url: '/app/template/pages-contents'
+            }
+          ]
         }
       ]
     } ,

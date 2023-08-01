@@ -46,6 +46,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import { TemplateLayoutComponent } from './account-meta/template/template-layout/template-layout.component';
+import { ImagesTemplateComponent } from './account-meta/template/images-template/images-template.component';
+import { PageContentsTemplateComponent } from './account-meta/template/page-contents-template/page-contents-template.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import {MatButtonModule} from '@angular/material/button';
     ChartsComponent,
     FaqComponent,
     ProfileComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    TemplateLayoutComponent,
+    ImagesTemplateComponent,
+    PageContentsTemplateComponent
   ],
     imports: [
         CommonModule,
