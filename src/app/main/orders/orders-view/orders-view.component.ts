@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CommonService} from '../../../services/providers/common.service';
-import {RouteConstants} from '../../../constants/route-constants';
+import {RouteConstants} from '../../../utils/constants/route-constants';
 
 @Component({
   selector: 'app-orders-view',

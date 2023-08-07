@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core'
 import {CommonService} from '../../../services/providers/common.service';
-import {RouteConstants} from '../../../constants/route-constants';
-import {ModalService} from '../../../services/providers/modal.service';
+import {RouteConstants} from '../../../utils/constants/route-constants';
 import {CommonModalService} from '../../../services/providers/common-modal.service';
+import {BehaviorSubject, forkJoin} from 'rxjs';
+import {CategoryInfo, ModalData, ProductInfo} from '../../../utils/interfaces/store-interfaces';
 
 @Component({
   selector: 'app-items',
@@ -11,8 +12,11 @@ import {CommonModalService} from '../../../services/providers/common-modal.servi
 })
 export class ItemsComponent implements OnInit {
 
-  items = [];
+  items : ProductInfo[];
+  categories : CategoryInfo[];
   categoryMap : any = {};
+  productList$ = new BehaviorSubject<ProductInfo[]>([]);
+  categoryList$ = new BehaviorSubject<CategoryInfo[]>([]);
   public selectedItem = {
     "img" : "",
     "name" : "",
@@ -28,15 +32,27 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._getItems()
-      .subscribe(res => {
-        let r = JSON.parse(JSON.stringify(res));
-        console.log("Items : ",r);
-        this.items = r.data;
-        this.fillCategoryToItemMap()
-      }, (err) => {
-        console.log(err);
-      });
+    const items$ = this._getItems();
+    const categories$ = this._getCategories();
+    forkJoin([items$,categories$]).subscribe((data: any) => {
+      this.productList$.next(data[0]["data"]);
+      this.categoryList$.next(data[1]["data"]);
+    });
+    this.transactWithItems();
+    this,this.transactWithCategories();
+  }
+
+  transactWithItems() {
+    this.productList$.subscribe(items => {
+      this.items = items
+      this.fillCategoryToItemMap();
+    })
+  }
+
+  transactWithCategories() {
+    this.categoryList$.subscribe(categories => {
+      this.categories = categories;
+    })
   }
 
   fillCategoryToItemMap() {
@@ -60,6 +76,7 @@ export class ItemsComponent implements OnInit {
   onSelectItem(item) {
     this.isDetailsOpened = true
     this.selectedItem = item
+    this.populateModalData(item)
   }
 
   onClose(event) {
@@ -67,22 +84,20 @@ export class ItemsComponent implements OnInit {
   }
 
   populateModalData(itemSelected) {
-    this._getCategories()
-      .subscribe(res => {
-        let r = JSON.parse(JSON.stringify(res));
-        let modalData = {};
-        modalData["itemToBeViewed"] = itemSelected;
-        modalData["categories"] = r.data;
-        this.onView(modalData);
-      }, (err) => {
-        console.log(err);
-      });
+    let modalData  = {} as ModalData
+    modalData.itemToBeViewed = itemSelected;
+    modalData.categories = this.categories;
+    this.onView(modalData);
   }
-
+  addItem(){
+    let modalData = {} as ModalData;
+    modalData.add = true;
+    modalData.categories = this.categories;
+    this.onView(modalData);
+  }
 
   onView(modalData) {
     this.modal.upsertItem(modalData).afterClosed().subscribe(() => {
-
     })
   }
 

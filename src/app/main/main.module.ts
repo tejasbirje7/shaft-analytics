@@ -49,6 +49,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { TemplateLayoutComponent } from './account-meta/template/template-layout/template-layout.component';
 import { ImagesTemplateComponent } from './account-meta/template/images-template/images-template.component';
 import { PageContentsTemplateComponent } from './account-meta/template/page-contents-template/page-contents-template.component';
+import { CategoryUpsertViewComponent } from './store/category-upsert-view/category-upsert-view.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { PageContentsTemplateComponent } from './account-meta/template/page-cont
     InvoiceComponent,
     TemplateLayoutComponent,
     ImagesTemplateComponent,
-    PageContentsTemplateComponent
+    PageContentsTemplateComponent,
+    CategoryUpsertViewComponent
   ],
     imports: [
         CommonModule,

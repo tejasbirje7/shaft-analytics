@@ -1,9 +1,11 @@
 import {Component, OnInit, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
 import {getDummyModel} from '../../../../@shaft-components/data/dummy';
 import {TableHeaderItem, TableItem, TableModel} from 'carbon-components-angular';
-import {RouteConstants} from '../../../constants/route-constants';
+import {RouteConstants} from '../../../utils/constants/route-constants';
 import {CommonService} from '../../../services/providers/common.service';
 import {BehaviorSubject, forkJoin} from 'rxjs';
+import {CategoryInfo, ProductInfo} from '../../../utils/interfaces/store-interfaces';
+import {CommonModalService} from '../../../services/providers/common-modal.service';
 
 const getSizeFrom = (name) => {
   const trans = {
@@ -38,7 +40,8 @@ export class CategoryComponent implements OnInit {
 
 
   constructor(
-    private restClient : CommonService
+    private restClient : CommonService,
+    private modal : CommonModalService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -62,6 +65,15 @@ export class CategoryComponent implements OnInit {
       this.prepareModelHeader();
       this.prepareModelData();
     });
+  }
+
+  addCategory() {
+    this.onView("Pass Data here");
+  }
+
+  onView(modalData) {
+    this.modal.upsertCategory(modalData).afterClosed().subscribe(() => {
+    })
   }
 
   prepareModelData() {
@@ -111,6 +123,8 @@ export class CategoryComponent implements OnInit {
       })
       this.isDataLoaded = true;
     })
+    this.model.data.splice(0,1);
+    console.log("Modal Data :", this.model.data)
   }
 
   prepareModelHeader() {
@@ -221,30 +235,3 @@ class CustomHeaderItem extends TableHeaderItem {
   }
 }
 
-
-export interface ProductInfo {
-  id: string;
-  name: string;
-  description: string;
-  detail: string;
-  category: string;
-  img: string;
-  gallery?: string[];
-  onSale: boolean;
-  costPrice: string;
-  salePrice?: string;
-  options?: DropdownItem[];
-  inStock: boolean;
-}
-
-export interface CategoryInfo {
-  name: string;
-  redirect: string;
-  count?: number;
-  products?: ProductInfo[];
-}
-
-export interface DropdownItem {
-  name: string;
-  value: string;
-}

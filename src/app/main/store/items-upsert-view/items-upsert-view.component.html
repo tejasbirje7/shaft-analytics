@@ -13,11 +13,12 @@
 
         <div fxLayout="row wrap" class="app-form__row">
 
-          <!--      Quantity-->
+
+          <!--        Discounted price-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <mat-form-field *ngIf="isQuantityRequired">
-              <mat-label>Quantity</mat-label>
-              <input type="number" matInput formControlName="qt">
+            <mat-form-field>
+              <mat-label>Discounted Price</mat-label>
+              <input type="number" matInput formControlName="discountedPrice">
             </mat-form-field>
           </div>
 
@@ -43,19 +44,17 @@
             </mat-form-field>
           </div>
 
-
           <!--Options-->
-          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <mat-form-field *ngIf="isSizeOptionsRequired">
+          <div  fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <mat-form-field *ngIf="isOptionsRequired">
               <mat-label>Size</mat-label>
               <mat-select #sl formControlName="options" multiple>
                 <button style="margin-left: 35%;margin-top: 10px;margin-bottom: 10px" color="accent" (click)="sl.close()" mat-raised-button>Done</button>
-                <mat-option *ngFor="let size of sizeList" [value]="size.value">{{ size.name }}</mat-option>
+                <mat-option *ngFor="let option of options" [value]="option">{{ option }}</mat-option>
               </mat-select>
+
             </mat-form-field>
           </div>
-
-
         </div>
 
         <div fxLayout="row wrap" class="app-foisInStockRequiredrm__row">
@@ -71,30 +70,27 @@
             </mat-form-field>
           </div>
 
-
-          <!--              Sale-->
+          <!--      Quantity-->
           <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
-            <mat-form-field *ngIf="isOnSaleRequired">
-              <mat-label>On Sale</mat-label>
-              <mat-select #sl formControlName="onSale">
-                <button style="margin-left: 35%;margin-top: 10px;margin-bottom: 10px"  color="accent" (click)="sl.close()" mat-raised-button>Done</button>
-                <mat-option *ngFor="let isOnSale of onSale" [value]="isOnSale">{{ isOnSale }}</mat-option>
-              </mat-select>
+            <mat-form-field *ngIf="isQuantityRequired">
+              <mat-label>Quantity</mat-label>
+              <input type="number" matInput formControlName="qt">
             </mat-form-field>
           </div>
         </div>
 
-
-        <!--        Description-->
-        <div class="app-form__item">
-          <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description"></textarea>
-          </mat-form-field>
+        <div fxLayout="row wrap" class="app-foisInStockRequiredrm__row">
+          <!--        Description-->
+          <div fxFlex="100%" fxFlex.gt-md="50%" class="app-form__item">
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea rows="5" cols="500" matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
         </div>
 
         <mat-toolbar class="center">
-          <button style="margin-right: 10px" mat-raised-button color="accent">Add</button>
+          <button style="margin-right: 10px" mat-raised-button color="accent" (click)="onSubmit()">Add</button>
           <button style="margin-right: 10px" mat-raised-button type="reset" color="accent">Reset</button>
         </mat-toolbar>
 

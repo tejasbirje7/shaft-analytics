@@ -5,6 +5,17 @@
   <ng-scrollbar>
     <div fxLayout="row" fxLayoutAlign="center start">
       <div class="mb-6 mt-6">
+        <div class="app-header-subheader app-header-subheader--transparent app-header-subheader--left-alt app-header-subheader--right-alt" style="height: 65px">
+          <div class="ml-3" style="width:370px">
+            <ibm-search placeholder="Search..."
+                        size="sm"></ibm-search>
+          </div>
+          <button (click)="addCategory()" ibmButton="primary" size="sm">
+            Upload
+            <svg class="bx--btn__icon" ibmIconUpload size="20"></svg>
+          </button>
+
+        </div>
         <ibm-table-container>
 
           <!   Model Data  ---->

@@ -1,0 +1,23 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div class="app-card app-card--m-0">
+    <form autocomplete="off" [formGroup]="categoryForm">
+      <div class="app-card__content app-form">
+
+        <!--    Name-->
+        <div class="app-form__item mt-5">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+
+        <mat-toolbar class="center">
+          <button style="margin-right: 10px" mat-raised-button color="accent" (click)="onSubmit()">Add</button>
+          <button style="margin-right: 10px" mat-raised-button type="reset" color="accent">Reset</button>
+        </mat-toolbar>
+
+
+      </div>
+    </form>
+  </div>
+</div>

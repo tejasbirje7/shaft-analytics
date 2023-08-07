@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {CommonModalService} from '../../../services/providers/common-modal.service';
 import {CommonService} from '../../../services/providers/common.service';
-import {RouteConstants} from '../../../constants/route-constants';
+import {RouteConstants} from '../../../utils/constants/route-constants';
 
 @Component({
   selector: 'app-orders-board',
