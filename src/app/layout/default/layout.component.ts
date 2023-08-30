@@ -174,20 +174,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
           prefix: {
             type: 'ibm-icon',
             name: 'imageSearch',
-          },
-          children: [
-            {
-              name: 'Images',
-              url: '/app/template/images'
-            },
-            {
-              name: 'Page Contents',
-              url: '/app/template/pages-contents'
-            }
-          ]
+          }
         }
       ]
-    } ,
+    }
   ]
 
   constructor(private settingsService: SettingsService,

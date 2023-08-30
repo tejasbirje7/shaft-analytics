@@ -46,10 +46,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
-import { TemplateLayoutComponent } from './account-meta/template/template-layout/template-layout.component';
-import { ImagesTemplateComponent } from './account-meta/template/images-template/images-template.component';
-import { PageContentsTemplateComponent } from './account-meta/template/page-contents-template/page-contents-template.component';
 import { CategoryUpsertViewComponent } from './store/category-upsert-view/category-upsert-view.component';
+import { TemplateComponent } from './account-meta/template/template.component';
 
 @NgModule({
   declarations: [
@@ -86,10 +84,8 @@ import { CategoryUpsertViewComponent } from './store/category-upsert-view/catego
     FaqComponent,
     ProfileComponent,
     InvoiceComponent,
-    TemplateLayoutComponent,
-    ImagesTemplateComponent,
-    PageContentsTemplateComponent,
-    CategoryUpsertViewComponent
+    CategoryUpsertViewComponent,
+    TemplateComponent
   ],
     imports: [
         CommonModule,

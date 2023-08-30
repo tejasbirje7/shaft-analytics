@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplateLayoutComponent } from './template-layout.component';
+import { TemplateComponent } from './template.component';
 
-describe('TemplateLayoutComponent', () => {
-  let component: TemplateLayoutComponent;
-  let fixture: ComponentFixture<TemplateLayoutComponent>;
+describe('TemplateComponent', () => {
+  let component: TemplateComponent;
+  let fixture: ComponentFixture<TemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TemplateLayoutComponent ]
+      declarations: [ TemplateComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TemplateLayoutComponent);
+    fixture = TestBed.createComponent(TemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

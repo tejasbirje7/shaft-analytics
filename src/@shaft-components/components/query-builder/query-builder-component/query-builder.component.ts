@@ -30,38 +30,7 @@ export class QueryBuilderComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
-  performedEvents = []
-  /*
-      {
-          nm: 'Page Visited', eid: 0, props: [
-              { 'nm' : 'url', 'id' : 0, 'dt' : 0}
-          ]
-      },
-      {
-          nm: 'Product Viewed', eid: 1, props: [
-              { 'nm' : 'name', 'id' : 0, 'dt' : 0},
-              { 'nm' : 'costPrice', 'id' : 1, 'dt' : 1},
-              { 'nm' : 'category', 'id' : 2, 'dt' : 0}
-          ]
-      },
-      {
-          nm: 'Add To Cart', eid: 2, props: [
-              { 'nm' : 'name', 'id' : 0, 'dt' : 0},
-              { 'nm' : 'costPrice', 'id' : 1, 'dt' : 1},
-              { 'nm' : 'quantity', 'id' : 2, 'dt' : 1},
-              { 'nm' : 'category', 'id' : 3, 'dt' : 0},
-              { 'nm' : 'onSale', 'id' : 4, 'dt' : 0},
-              { 'nm' : 'option', 'id' : 5, 'dt' : 0}
-          ]
-      },
-      {nm: 'Charged', eid: 3, props: [
-              { 'nm' : 'name', 'id' : 0, 'dt' : 0},
-              { 'nm' : 'costPrice', 'id' : 1, 'dt' : 1},
-              { 'nm' : 'quantity', 'id' : 2, 'dt' : 1},
-              { 'nm' : 'category', 'id' : 3, 'dt' : 0}
-          ]},
-      {nm: 'Notification Clicked', eid: 4, props: []
-      }*/
+  performedEvents = [];
   propsMap = {};
   prop = [];
   operators = [

@@ -14,9 +14,7 @@ import {ProfileComponent} from './user/profile/profile.component';
 import {CategoryComponent} from './store/category/category.component';
 import {TableBasicComponent} from './account-meta/events/table-basic.component';
 import {InvoiceComponent} from './account-meta/billing/invoice.component';
-import {TemplateLayoutComponent} from './account-meta/template/template-layout/template-layout.component';
-import {ImagesTemplateComponent} from './account-meta/template/images-template/images-template.component';
-import {PageContentsTemplateComponent} from './account-meta/template/page-contents-template/page-contents-template.component';
+import {TemplateComponent} from './account-meta/template/template.component';
 const routeForPages = [
   {
     path: 'dashboard',
@@ -131,30 +129,14 @@ const routeForPages = [
     component: TableBasicComponent,
     data: {
       breadcrumb: 'Events'
-    },
+    }
   },
   {
     path: 'template',
-    component: TemplateLayoutComponent,
+    component: TemplateComponent,
     data: {
       breadcrumb: 'Template'
-    },
-    children: [
-      {
-        path: 'images',
-        component: ImagesTemplateComponent,
-        data: {
-          breadcrumb: 'Images'
-        },
-      },
-      {
-        path: 'pages-contents',
-        component: PageContentsTemplateComponent,
-        data: {
-          breadcrumb: 'Pages Content'
-        },
-      }
-    ],
+    }
   },
   {
     path: '**',
