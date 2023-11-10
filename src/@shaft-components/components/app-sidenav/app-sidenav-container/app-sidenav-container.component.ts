@@ -6,8 +6,8 @@ import {
   Input,
   AfterContentInit,
   ElementRef,
-  AfterViewChecked, OnDestroy
-} from '@angular/core'
+  AfterViewChecked, OnDestroy, ChangeDetectorRef, AfterContentChecked
+} from '@angular/core';
 import {AppSidenavComponent} from '../app-sidenav/app-sidenav.component'
 import {Subscription} from 'rxjs'
 import {WindowRefService} from "../../../services/window-ref.service"
@@ -19,7 +19,7 @@ export declare type PanelType = '' | 'panel' | 'solid'
   templateUrl: './app-sidenav-container.component.html',
   styleUrls: ['./app-sidenav-container.component.scss'],
 })
-export class AppSidenavContainerComponent implements OnInit, OnDestroy, AfterContentInit, AfterViewChecked {
+export class AppSidenavContainerComponent implements OnInit, OnDestroy, AfterContentInit, AfterViewChecked, AfterContentChecked {
 
   @ContentChildren(AppSidenavComponent) sidenavs: QueryList<AppSidenavComponent>
 
@@ -65,6 +65,9 @@ export class AppSidenavContainerComponent implements OnInit, OnDestroy, AfterCon
   }
 
   ngAfterViewChecked(): void {
+  }
+
+  ngAfterContentChecked(): void {
   }
 
   ngOnDestroy(): void {

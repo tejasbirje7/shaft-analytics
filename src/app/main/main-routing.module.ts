@@ -14,6 +14,7 @@ import {ProfileComponent} from './user/profile/profile.component';
 import {CategoryComponent} from './store/category/category.component';
 import {TableBasicComponent} from './account-meta/events/table-basic.component';
 import {InvoiceComponent} from './account-meta/billing/invoice.component';
+import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
 import {TemplateComponent} from './account-meta/template/template.component';
 const routeForPages = [
   {
@@ -132,7 +133,14 @@ const routeForPages = [
     }
   },
   {
-    path: 'template',
+    path: 'catalog',
+    component: TemplateCatalogComponent,
+    data: {
+      breadcrumb: 'Template'
+    }
+  },
+  {
+    path: 'configure',
     component: TemplateComponent,
     data: {
       breadcrumb: 'Template'
@@ -150,7 +158,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: routeForPages,
-  },
+  }
 ]
 
 @NgModule({

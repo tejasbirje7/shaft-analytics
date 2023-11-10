@@ -7,13 +7,14 @@ import {
   OnChanges,
   SimpleChanges,
   SimpleChange,
-  ElementRef, AfterContentInit, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy
-} from '@angular/core'
+  ElementRef, AfterContentInit, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectorRef
+} from '@angular/core';
 import {AppBreakpointService} from "../../../services/app-breakpoint.service"
 import {Subscription} from 'rxjs'
 import {ResizeEvent} from 'angular-resizable-element'
 import {PanelType} from "../app-sidenav-container/app-sidenav-container.component"
 import {AppSidenavService} from "../../../services/app-sidenav.service"
+import {delay} from 'rxjs/operators';
 
 export declare type DirectionType = 'left' | 'right' | 'bottom' | 'top'
 export declare type ModeType = 'over' | 'side'
@@ -170,7 +171,6 @@ export class AppSidenavComponent implements OnInit, OnDestroy, AfterContentInit,
 
   ngOnChanges(changes: SimpleChanges): void {
     const opened: SimpleChange = changes.originalOpened
-
     if (opened !== undefined && opened.previousValue !== undefined) {
       const currentOpened = opened.currentValue
       if (currentOpened) {
@@ -200,11 +200,9 @@ export class AppSidenavComponent implements OnInit, OnDestroy, AfterContentInit,
   }
 
   ngAfterViewInit() {
-
   }
 
   ngAfterViewChecked() {
-
   }
 
   setWidth(width) {

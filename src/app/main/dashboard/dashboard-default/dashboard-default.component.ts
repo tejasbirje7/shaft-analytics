@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core'
 
 import * as echarts from 'echarts'
 import {getDummyModel} from "../../../../@shaft-components/data/dummy"
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-default',
@@ -69,7 +70,7 @@ export class DashboardDefaultComponent implements OnInit {
     }
   ]
 
-  constructor() {
+  constructor(private router : Router) {
   }
 
   ngOnInit(): void {

@@ -59,7 +59,6 @@ export class DummyTableRichComponent implements OnInit {
       className: "items-center"
     })
     model.data.map(data => {
-      console.log("Data in dummy ",data);
       data[2] = new TableItem({
         data: data[2].data,
         template: this.proficiencyTemplate,

@@ -167,10 +167,24 @@ export class LayoutComponent implements OnInit, OnDestroy {
             type: 'ibm-icon',
             name: 'magicWand',
           }
+        }
+      ]
+    },
+    {
+      groupName: 'TEMPLATE',
+      opened: true,
+      children: [
+        {
+          name: 'Catalog',
+          url: '/app/catalog',
+          prefix: {
+            type: 'ibm-icon',
+            name: 'imageSearch',
+          }
         },
         {
-          name: 'Template',
-          url: '/app/template',
+          name: 'Configure',
+          url: '/app/configure',
           prefix: {
             type: 'ibm-icon',
             name: 'imageSearch',

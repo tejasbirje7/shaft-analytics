@@ -1,0 +1,67 @@
+<div fxFill fxLayout="column">
+  <shaft-header>
+  </shaft-header>
+  <div fxFlex class="relative">
+    <div class="app-a-box app-scrollbar-fix">
+      <ng-scrollbar>
+        <div fxFill fxLayout="column">
+          <div fxFlex class="relative">
+            <div fxLayout="row wrap">
+              <div fxFlex="100%">
+
+                <div class="app-header-subheader app-header-subheader--transparent app-header-subheader--left-alt app-header-subheader--right-alt" style="height: 65px">
+                  <div class="ml-3" style="width:370px">
+                    <ibm-search placeholder="Search..."
+                                size="sm"></ibm-search>
+                  </div>
+
+                  <div class="flex-1 flex justify-end">
+                    <div class="app-list-header-pill">STORAGE STATUS</div>
+                    <div class="flex items-center px-4 pb-4">
+                      <div class="pr-2">
+                        <shaft-ibm-icon iconName="cloudDataOps" iconSize="32"></shaft-ibm-icon>
+                      </div>
+                      <div class="mr-4 flex-1">
+                        <div>
+                          <div class="app-expressive-heading-02 mb-2">3TB used of 10TB</div>
+                          <div class="app-progress app-progress--small">
+                            <div class="app-progress__bar app-bg-info" style="width:30%"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ng-container *ngFor="let category of categoryMap | keyvalue">
+              <div class="app-subtitle app-subtitle--cards mt-8 ml-2">{{category.key}}</div>
+              <div fxLayout="row wrap" class="app-card-row-holder">
+                <ng-container *ngFor="let item of category.value">
+                  <div fxFlex="100%" fxFlex.gt-md="11.40%">
+                    <div class="app-card app-card--select"
+                         (click)="onSelectItem(item)">
+                      <div class="app-card__content__alt">
+                        <div class="">
+                          <img class="sm:w-40 rounded-lg border-2 border-solid app-border-container" src={{item.img}}  />
+                          <div>
+                            <div class="app-expressive-heading-01 truncate mt-2">{{item.name}}</div>
+                            <!--                              <div class="app-helper-text-01 mb-2">{{item.category}}</div>-->
+                            <div class="app-label-01 text-muted">{{item.costPrice}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+<!--            <div class="mx-4 py-1 mb-4 app-border-b"></div>-->
+          </div>
+        </div>
+      </ng-scrollbar>
+    </div>
+  </div>
+</div>
+

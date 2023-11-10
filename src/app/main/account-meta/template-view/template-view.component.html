@@ -1,0 +1,65 @@
+<ng-container>
+  <mat-icon class="bell-icon" color="black" name="close"></mat-icon>
+
+  <div *ngIf="file" class="parent">
+    <ibm-file-uploader
+      [title]="'File uploader'"
+      [description]="'only jpg, png'"
+      [buttonText]="'+'"
+      [buttonType]="'ghost'"
+      [accept]="'.png,image/jpeg'"
+      [multiple]="multiFile"
+      (filesChange)="fileUploaded($event)"
+      [size]="'normal'"
+      [disabled]="false">
+    </ibm-file-uploader>
+  </div>
+
+  <div *ngIf="radio" class="parent">
+    <label id="example-radio-group-label">Select if you want to enable / disable</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="radioValue">
+      <mat-radio-button class="example-radio-button" *ngFor="let option of radioOptions" [value]="option">
+        {{option}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+
+  <div *ngIf="input" class="parent">
+    <mat-form-field color='accent'>
+      <mat-label>What's Trending</mat-label>
+      <input [(ngModel)]="inputText" matInput style="color: black;font-weight: bolder">
+      <!--      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>-->
+      <!--      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>-->
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="list" class="parent">
+    <form [formGroup]="componentForm">
+      <div
+        class="parent"
+        formArrayName="componentFields"
+        *ngFor="let field of componentForm.get('componentFields')['controls']; let i = index;"
+      >
+        <mat-form-field color='accent'>
+          <div class="mb-2" [formGroupName]="i">
+            <input matInput formControlName="description" placeholder="Item description">
+          </div>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+
+
+  <mat-toolbar class="center mt-2">
+    <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="addItem()">Add</button>
+    <br>
+    <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="onSubmit()">Done</button>
+    <br>
+    <button mat-raised-button class="done-button" (click)="closeModal()">Cancel</button>
+  </mat-toolbar>
+</ng-container>

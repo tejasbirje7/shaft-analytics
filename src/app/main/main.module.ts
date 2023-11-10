@@ -48,6 +48,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CategoryUpsertViewComponent } from './store/category-upsert-view/category-upsert-view.component';
 import { TemplateComponent } from './account-meta/template/template.component';
+import { TemplateViewComponent } from './account-meta/template-view/template-view.component';
+import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
+import { TemplateDemoComponent } from './account-meta/template-demo/template-demo.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,10 @@ import { TemplateComponent } from './account-meta/template/template.component';
     ProfileComponent,
     InvoiceComponent,
     CategoryUpsertViewComponent,
-    TemplateComponent
+    TemplateComponent,
+    TemplateCatalogComponent,
+    TemplateViewComponent,
+    TemplateDemoComponent
   ],
     imports: [
         CommonModule,
