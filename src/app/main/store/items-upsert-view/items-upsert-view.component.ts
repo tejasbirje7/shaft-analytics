@@ -4,6 +4,7 @@ import {CommonService} from '../../../services/providers/common.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ItemToBeViewed, ModalData} from '../../../utils/interfaces/store-interfaces';
 import {CategoryUpsertViewComponent} from '../category-upsert-view/category-upsert-view.component';
+import {RouteConstants} from '../../../utils/constants/route-constants';
 
 @Component({
   selector: 'app-orders-view',
@@ -23,6 +24,8 @@ export class ItemsUpsertViewComponent implements OnInit {
     'inStock': new FormControl(''),
     'onSale' : new FormControl('')
   });
+
+  multiFile: boolean;
   inStock = [ true, false ];
   onSale =  [ true, false];
   options : String[] =  ['xs','s','m','l','xl'];
@@ -31,8 +34,7 @@ export class ItemsUpsertViewComponent implements OnInit {
   isQuantityRequired = true;
   itemToBeViewed : ItemToBeViewed;
   categories
-
-
+  private uploadedFiles: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public modalData: ModalData,
@@ -51,7 +53,7 @@ export class ItemsUpsertViewComponent implements OnInit {
   }
 
   onClose() {
-    this.itemDialog .close(false)
+    this.itemDialog.close(false)
   }
 
   patchValues(){
@@ -70,5 +72,74 @@ export class ItemsUpsertViewComponent implements OnInit {
 
   onSubmit() {
     console.log("Item form : ",this.itemForm.value);
+    let itemDetails = {};
+    itemDetails = this.itemForm.value;
+    let formData = new FormData();
+    this.uploadedFiles.forEach((file) => {
+      formData.append('files',file.file,file.file.name);
+      itemDetails['img'] = file.file.name
+    })
+    formData.append('itemDetails', JSON.stringify(itemDetails));
+    console.log("File Data : ",formData);
+    this._upsertItems(formData)
   }
+
+  onDelete() {
+    console.log("Deleting item");
+    var requestData = {};
+    requestData["id"] = this.itemToBeViewed["id"];
+    this._deleteItem(requestData)
+  }
+
+  fileUploaded(event) {
+    console.log("Files Uploaded : ",event);
+    this.uploadedFiles = event;
+  }
+
+  _upsertItems(formData){
+    return this.restClient.invokeDashboardService(RouteConstants.SAVE_ITEM,formData)
+      .subscribe(res => {
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  _deleteItem(formData){
+    return this.restClient.invokeDashboardService(RouteConstants.DELETE_ITEM,formData)
+      .subscribe(res => {
+        this.itemDialog.close();
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  /*
+    addItem(){
+    if(this.getFileName() && this.itemForm.status){
+      let itemDetails = {};
+      itemDetails = this.itemForm.value;
+      let formData = new FormData();
+      let files = this.fileField.getFiles();
+      files.forEach((file) => {
+        formData.append('files', file.rawFile, file.name);
+        itemDetails['img'] = file.name;
+      });
+      if (this.editMode) {
+        itemDetails['id'] = this.selectedItem.id;
+        formData.append('itemDetails', JSON.stringify(itemDetails));
+        this._updateItem(formData);
+        this.editMode = false;
+        this.selectedItem = {};
+      } else {
+        formData.append('itemDetails', JSON.stringify(itemDetails));
+        this._saveItems(formData)
+      }
+      this.closeModal('item');
+      this.catFormSubmitted = false;
+    } else{
+      this.catFormSubmitted = true;
+    }
+  }
+   */
+
 }

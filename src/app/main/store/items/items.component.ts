@@ -39,7 +39,7 @@ export class ItemsComponent implements OnInit {
       this.categoryList$.next(data[1]["data"]);
     });
     this.transactWithItems();
-    this,this.transactWithCategories();
+    this.transactWithCategories();
   }
 
   transactWithItems() {

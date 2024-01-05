@@ -27,8 +27,20 @@
               </mat-expansion-panel-header>
 
               <mat-form-field appearance="fill">
-                <mat-label>Country</mat-label>
-                <input matInput>
+                <div class="parent">
+                  <ibm-file-uploader
+                    [title]="'File uploader'"
+                    [description]="'only jpg, png'"
+                    [buttonText]="'+'"
+                    [buttonType]="'ghost'"
+                    [accept]="'.png,image/jpeg'"
+                    [multiple]="multiFile"
+                    (filesChange)="fileUploaded($event)"
+                    [size]="'normal'"
+                    [disabled]="false">
+                  </ibm-file-uploader>
+                </div>
+                <input disabled matInput>
               </mat-form-field>
 
               <mat-action-row>

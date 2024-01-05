@@ -7,6 +7,7 @@ export class RouteConstants {
     public static GET_ITEMS_IN_ORDER: string = "inventory/orders/items";
     public static UPDATE_ORDER_STATUS: string = "inventory/orders/stage";
     public static SAVE_ITEM : string = "catalog/items/save"
+    public static DELETE_ITEM : string = "catalog/items/delete"
     public static SAVE_CATEGORY : string = "catalog/categories/save"
     public static UPDATE_ITEM : string = "catalog/items/update"
     public static UPDATE_CATEGORY : string = "catalog/categories/update"

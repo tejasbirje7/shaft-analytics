@@ -9,6 +9,8 @@ import {ModalService} from '../../../../services/providers/modal.service';
 })
 export class CampaignCreationComponent implements OnInit {
 
+  private uploadedFiles: any;
+  multiFile: boolean;
   needTriggerEvent : boolean= true;
   eventsMetaLoaded : boolean = false;
   eventsMeta : any[];
@@ -68,7 +70,13 @@ export class CampaignCreationComponent implements OnInit {
     request['nm'] = this.filterName.value;
     request['fs'] = this.filterStrings;
     request['cid'] = this.jsDateToEpoch(new Date());
-    this.saveTarget(request).then(r => {
+    let formData = new FormData();
+    this.uploadedFiles.forEach((file) => {
+      formData.append('files',file.file,file.file.name);
+      request['img'] = file.file.name
+    })
+    formData.append('campaignDetails', JSON.stringify(request));
+    this.saveTarget(formData).then(r => {
       this.closeModal('filterName');
       // To be removed
       this.displayFilter = request;
@@ -116,6 +124,11 @@ export class CampaignCreationComponent implements OnInit {
       }, (err) => {
         console.log(err);
       });
+  }
+
+  fileUploaded(event) {
+    console.log("Files Uploaded : ",event);
+    this.uploadedFiles = event;
   }
 
 }

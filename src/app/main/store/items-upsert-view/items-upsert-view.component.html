@@ -89,9 +89,24 @@
           </div>
         </div>
 
+        <div class="parent">
+          <ibm-file-uploader
+            [title]="'File uploader'"
+            [description]="'only jpg, png'"
+            [buttonText]="'+'"
+            [buttonType]="'ghost'"
+            [accept]="'.png,image/jpeg'"
+            [multiple]="multiFile"
+            (filesChange)="fileUploaded($event)"
+            [size]="'normal'"
+            [disabled]="false">
+          </ibm-file-uploader>
+        </div>
+
         <mat-toolbar class="center">
           <button style="margin-right: 10px" mat-raised-button color="accent" (click)="onSubmit()">Add</button>
           <button style="margin-right: 10px" mat-raised-button type="reset" color="accent">Reset</button>
+          <button style="margin-right: 10px" mat-raised-button type="reset" color="accent" (click)="onDelete()">Delete</button>
         </mat-toolbar>
 
 
