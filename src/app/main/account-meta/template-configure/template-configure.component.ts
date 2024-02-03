@@ -5,11 +5,11 @@ import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
 import {TemplateConstants} from '../../../utils/constants/template-constants';
 
 @Component({
-  selector: 'app-template-view',
-  templateUrl: './template-view.component.html',
-  styleUrls: ['./template-view.component.scss']
+  selector: 'app-template-configure',
+  templateUrl: './template-configure.component.html',
+  styleUrls: ['./template-configure.component.scss']
 })
-export class TemplateViewComponent implements OnInit {
+export class TemplateConfigureComponent implements OnInit {
   type: String;
   file:boolean;
   input:boolean;
@@ -19,7 +19,6 @@ export class TemplateViewComponent implements OnInit {
   radioValue: boolean;
   radioOptions = [true,false]
   list: boolean;
-
   componentForm: FormGroup;
   componentFields: FormArray;
   private uploadedFiles: any;
@@ -29,7 +28,7 @@ export class TemplateViewComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public modalData : TemplateModalData,
     private _formBuilder: FormBuilder,
-    private templateDialog : MatDialogRef<TemplateViewComponent>) { }
+    private templateDialog : MatDialogRef<TemplateConfigureComponent>) { }
 
   ngOnInit(): void {
     console.log("Modal Data ",this.modalData)

@@ -104,7 +104,7 @@
         </div>
 
         <mat-toolbar class="center">
-          <button style="margin-right: 10px" mat-raised-button color="accent" (click)="onSubmit()">Add</button>
+          <button style="margin-right: 10px" mat-raised-button color="accent" (click)="onSubmit()">{{itemToBeViewed?.hasOwnProperty("id") ? "Update" : "Add"}}</button>
           <button style="margin-right: 10px" mat-raised-button type="reset" color="accent">Reset</button>
           <button style="margin-right: 10px" mat-raised-button type="reset" color="accent" (click)="onDelete()">Delete</button>
         </mat-toolbar>

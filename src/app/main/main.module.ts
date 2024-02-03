@@ -48,7 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CategoryUpsertViewComponent } from './store/category-upsert-view/category-upsert-view.component';
 import { TemplateComponent } from './account-meta/template/template.component';
-import { TemplateViewComponent } from './account-meta/template-view/template-view.component';
+import { TemplateConfigureComponent } from './account-meta/template-configure/template-configure.component';
 import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
 import { TemplateDemoComponent } from './account-meta/template-demo/template-demo.component';
 
@@ -90,7 +90,7 @@ import { TemplateDemoComponent } from './account-meta/template-demo/template-dem
     CategoryUpsertViewComponent,
     TemplateComponent,
     TemplateCatalogComponent,
-    TemplateViewComponent,
+    TemplateConfigureComponent,
     TemplateDemoComponent
   ],
     imports: [

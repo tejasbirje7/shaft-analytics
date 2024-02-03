@@ -26,6 +26,7 @@ export interface DropdownItem {
 }
 
 export interface ItemToBeViewed {
+  id : String
   name : String;
   category : any;
   costPrice : Number;

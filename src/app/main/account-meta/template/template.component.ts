@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonModalService} from '../../../services/providers/common-modal.service';
 import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -380,12 +380,18 @@ export class TemplateComponent implements OnInit {
 
   constructor(
     private route : ActivatedRoute,
+    private router : Router,
     private modal : CommonModalService) {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      console.log("Params : ",params);
+    this.route.queryParams.subscribe((params) => {
+      if(params.hasOwnProperty("id")) {
+        console.log("Params : ",params);
+      } else {
+        console.log("Routed manually");
+        // #TODO Do a network call to fetch template ID for the shop and fetch configuration options
+      }
     });
   }
 

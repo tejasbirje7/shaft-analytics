@@ -14,8 +14,9 @@ export class TemplateCatalogComponent implements OnInit {
 
   constructor(
     //private router : Router,
-    private modal : CommonModalService
-    ) { }
+    private modal : CommonModalService,
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
     this.categoryMap = {
@@ -33,6 +34,7 @@ export class TemplateCatalogComponent implements OnInit {
   onSelectItem(item) {
     this.modal.viewTemplateDemo(item).afterClosed().subscribe(data => {
       console.log("Data in Modal ",data);
+      this.router.navigateByUrl('/app/configure?id=' + item.id );
     });
   }
 

@@ -3,7 +3,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog
 import {OrdersViewComponent} from '../../main/orders/orders-view/orders-view.component';
 import {ItemsUpsertViewComponent} from '../../main/store/items-upsert-view/items-upsert-view.component';
 import {CategoryUpsertViewComponent} from '../../main/store/category-upsert-view/category-upsert-view.component';
-import {TemplateViewComponent} from '../../main/account-meta/template-view/template-view.component';
+import {TemplateConfigureComponent} from '../../main/account-meta/template-configure/template-configure.component';
 import {TemplateModalData} from '../../utils/interfaces/template-interfaces';
 import {TemplateDemoComponent} from '../../main/account-meta/template-demo/template-demo.component';
 
@@ -15,7 +15,7 @@ export class CommonModalService {
   private ORDER_MODAL: MatDialogRef<OrdersViewComponent>
   private ITEM_EDIT_MODAL: MatDialogRef<ItemsUpsertViewComponent>
   private CATEGORY_EDIT_MODAL: MatDialogRef<CategoryUpsertViewComponent>
-  private TEMPLATE_OPTION: MatDialogRef<TemplateViewComponent>
+  private TEMPLATE_OPTION: MatDialogRef<TemplateConfigureComponent>
   private TEMPLATE_DEMO_MODAL: MatDialogRef<TemplateDemoComponent>
 
 
@@ -78,7 +78,7 @@ export class CommonModalService {
     config.height = '450px'
     config.data = modalData
 
-    this.TEMPLATE_OPTION = this.dialog.open(TemplateViewComponent, config)
+    this.TEMPLATE_OPTION = this.dialog.open(TemplateConfigureComponent, config)
     return this.TEMPLATE_OPTION
   }
 

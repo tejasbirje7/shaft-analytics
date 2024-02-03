@@ -2,7 +2,7 @@
   <div class="px-4 pt-4">
     <div class="flex items-center">
       <div class="h-3 w-3 app-bg-info rounded-full mr-2"></div>
-      <div class="app-productive-heading-02 font-bold">{{orderToBeViewed}}</div>
+      <div class="app-productive-heading-02 font-bold">{{orderToBeViewed["oid"]}}</div>
       <div class="flex-1 flex justify-end">
         <button ibmButton="ghost" size="sm" class="bx--btn--icon-only mr-1">
           <svg class="bx--btn__icon" ibmIconLocked size="32"></svg>
@@ -41,50 +41,50 @@
                   </ibm-tab-header>
                 </ibm-tab-header-group>
 
-<!--
-{
-                "oid": 1675614111,
-                "i": 1675491889,
-                "ts": 1675614111,
-                "totalPrice": 249.5,
-                "sg": 1,
-                "customerInfo": {
-                    "name": "Tejas",
-                    "email": "tejas.birje@gmail.com",
-                    "phoneNumber": 8097036598
-                },
-                "deliveryInfo": {
-                    "recipientName": "Tejas",
-                    "recipientNumber": 8097036598,
-                    "addressLine1": "502,5th floor,Venky PG",
-                    "addressLine2": "mukai nagar,marunji road,hinjewadi",
-                    "city": "PUNE",
-                    "state": "Near Mezza 9 parking",
-                    "postcode": "411057",
-                    "country": "India"
-                },
-                "paymentInfo": {
-                    "holderName": "Tejas ",
-                    "cardNumber": 234364542523,
-                    "expiredDate": "23/23",
-                    "cvc": 234
-                },
-                "items": [
-                    {
-                        "id": "ZmFZxIEB13MVZjsuRGxE",
-                        "costPrice": 150,
-                        "quantity": 1,
-                        "option": "xs"
-                    },
-                    {
-                        "id": "XmFZxIEB13MVZjsuQmxg",
-                        "costPrice": 40,
-                        "quantity": 1,
-                        "option": "xs"
-                    }
-                ]
-            }
--->
+                <!--
+                {
+                                "oid": 1675614111,
+                                "i": 1675491889,
+                                "ts": 1675614111,
+                                "totalPrice": 249.5,
+                                "sg": 1,
+                                "customerInfo": {
+                                    "name": "Tejas",
+                                    "email": "tejas.birje@gmail.com",
+                                    "phoneNumber": 8097036598
+                                },
+                                "deliveryInfo": {
+                                    "recipientName": "Tejas",
+                                    "recipientNumber": 8097036598,
+                                    "addressLine1": "502,5th floor,Venky PG",
+                                    "addressLine2": "mukai nagar,marunji road,hinjewadi",
+                                    "city": "PUNE",
+                                    "state": "Near Mezza 9 parking",
+                                    "postcode": "411057",
+                                    "country": "India"
+                                },
+                                "paymentInfo": {
+                                    "holderName": "Tejas ",
+                                    "cardNumber": 234364542523,
+                                    "expiredDate": "23/23",
+                                    "cvc": 234
+                                },
+                                "items": [
+                                    {
+                                        "id": "ZmFZxIEB13MVZjsuRGxE",
+                                        "costPrice": 150,
+                                        "quantity": 1,
+                                        "option": "xs"
+                                    },
+                                    {
+                                        "id": "XmFZxIEB13MVZjsuQmxg",
+                                        "costPrice": 40,
+                                        "quantity": 1,
+                                        "option": "xs"
+                                    }
+                                ]
+                            }
+                -->
 
                 <div *ngIf="infoTab" class="flex mb-6 mt-6">
                   <div class="app-content app-content--default">

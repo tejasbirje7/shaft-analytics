@@ -74,6 +74,9 @@ export class ItemsUpsertViewComponent implements OnInit {
     console.log("Item form : ",this.itemForm.value);
     let itemDetails = {};
     itemDetails = this.itemForm.value;
+    if(this.itemToBeViewed?.id != undefined) {
+      itemDetails['id'] = this.itemToBeViewed["id"] ;
+    }
     let formData = new FormData();
     this.uploadedFiles.forEach((file) => {
       formData.append('files',file.file,file.file.name);
@@ -81,7 +84,7 @@ export class ItemsUpsertViewComponent implements OnInit {
     })
     formData.append('itemDetails', JSON.stringify(itemDetails));
     console.log("File Data : ",formData);
-    this._upsertItems(formData)
+    this._addItem(formData)
   }
 
   onDelete() {
@@ -96,8 +99,16 @@ export class ItemsUpsertViewComponent implements OnInit {
     this.uploadedFiles = event;
   }
 
-  _upsertItems(formData){
+  _addItem(formData){
     return this.restClient.invokeDashboardService(RouteConstants.SAVE_ITEM,formData)
+      .subscribe(res => {
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  _updateItem(formData){
+    return this.restClient.invokeDashboardService(RouteConstants.UPDATE_ITEM,formData)
       .subscribe(res => {
       }, (err) => {
         console.log(err);
