@@ -116,11 +116,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
           children: [
             {
               name: 'Boards',
-              url: '/app/engagement/analytics/filters',
+              url: '/app/engagement/analytics/saved',
             },
             {
               name: 'Filter',
-              url: '/app/engagement/campaign/create',
+              url: '/app/engagement/analytics/filter',
             }
           ]
         }

@@ -42,3 +42,9 @@ export interface ModalData {
   categories: any;
 
 }
+
+export interface campaignDetails {
+  rowData : [];
+  campaignDetails : [];
+
+}

@@ -16,6 +16,29 @@ export class CampaignCreationComponent implements OnInit {
   eventsMeta : any[];
   step : number = 0;
   queryFormed;
+  campaignTypes = [
+    {
+      "tgtType" : "In-app",
+      "tgtValue" : 1
+    },
+    {
+      "tgtType" : "WhatsApp",
+      "tgtValue" : 2
+    },
+    {
+      "tgtType" : "Email",
+      "tgtValue" : 3
+    },
+    {
+      "tgtType" : "SMS",
+      "tgtValue" : 4
+    },
+    {
+      "tgtType" : "Facebook Ads",
+      "tgtValue" : 5
+    },
+
+  ]
   displayFilter: any = {};
   filterStrings = {
     'whoDid' : [],
@@ -30,7 +53,7 @@ export class CampaignCreationComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
-  filterForm: FormGroup;
+  selectedCampaignType: any;
 
   constructor(
     private restClient : CommonService,
@@ -39,9 +62,6 @@ export class CampaignCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEventsMeta();
-    this.filterForm = this._formBuilder.group({
-      queryBuilder: new FormArray([])
-    });
   }
 
   setStep(index: number) {
@@ -62,9 +82,10 @@ export class CampaignCreationComponent implements OnInit {
   }
 
   createFilters() {
-    console.log("QueryFormed ",this.queryFormed)
+    console.log("QueryFormed ",this.queryFormed, " Campaign type ",this.selectedCampaignType);
     this.filterStrings = this.queryFormed["filterString"];
     const request = {};
+    request['campaignDetails'] = this.selectedCampaignType;
     request['q'] = this.queryFormed['q'];
     request['te'] = this.queryFormed['te'];
     request['nm'] = this.filterName.value;

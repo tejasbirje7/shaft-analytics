@@ -1,0 +1,35 @@
+<div *ngIf=eventsMetaLoaded class="app-a-box app-scrollbar-fix">
+  <shaft-header>
+  </shaft-header>
+  <ng-scrollbar>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex="100%" fxFlex.gt-md="70%" fxFlex.gt-lg="50%" class="app-content app-content--default">
+        <mat-card>
+          <app-query-builder [(triggerEvent)]=needTriggerEvent [(eventsMeta)]="eventsMeta" (onChange)="getQuery($event)" #query></app-query-builder>
+        </mat-card>
+        <br>
+        <mat-toolbar class="center">
+          <button mat-raised-button class="done-button" style="margin-right: 20px">Cancel</button>
+          <br>
+          <button mat-raised-button class="done-button" (click)="openModal('analyticsFilter')">Create</button>
+        </mat-toolbar>
+      </div>
+    </div>
+  </ng-scrollbar>
+
+</div>
+
+<app-modal style="text-align: center" id="analyticsFilter">
+  <form class="parent">
+    <mat-form-field class="center">
+      <mat-label>Filter Name</mat-label>
+      <input [formControl]="filterName" matInput style="color: black;font-weight: bolder">
+    </mat-form-field>
+  </form>
+  <mat-toolbar class="center">
+    <div class="center" mat-dialog-actions>
+      <button mat-button color=accent (click)="closeModal('analyticsFilter')">Cancel</button>
+      <button mat-raised-button color=accent (click)="createFilters()">Save</button>
+    </div>
+  </mat-toolbar>
+</app-modal>

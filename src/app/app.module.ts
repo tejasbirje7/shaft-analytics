@@ -25,25 +25,27 @@ import {environment} from '../environments/environment'
 import {EffectsModule} from '@ngrx/effects'
 import {AppEffects} from './store/app.effects'
 import {CommonModule} from '@angular/common';
+import {ChartsModule} from '@shaft-components/modules/charts/charts.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    CoreModule,
-    HttpClientModule,
-    CommonModule,
-    SharedModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
-    NgxMdModule.forRoot(),
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FlexLayoutModule,
+        CoreModule,
+        HttpClientModule,
+        CommonModule,
+        SharedModule,
+        StoreModule.forRoot(reducers, {metaReducers}),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        EffectsModule.forRoot([AppEffects]),
+        NgxMdModule.forRoot(),
+        ChartsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

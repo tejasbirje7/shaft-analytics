@@ -34,7 +34,7 @@ import {OrdersBoardComponent} from './orders/orders-board/orders-board.component
 import {OrdersViewComponent} from './orders/orders-view/orders-view.component'
 import {CampaignSavedComponent} from './engagement/campaign/saved/campaign-saved.component';
 import {CampaignCreationComponent} from './engagement/campaign/creation/campaign-creation.component';
-import {ChartsComponent} from './engagement/analytics/filter/charts.component';
+import {ChartsComponent} from './engagement/analytics/saved/charts.component';
 import {FaqComponent} from './user/segment/faq.component';
 import {ProfileComponent} from './user/profile/profile.component';
 import {CategoryComponent} from './store/category/category.component';
@@ -51,6 +51,8 @@ import { TemplateComponent } from './account-meta/template/template.component';
 import { TemplateConfigureComponent } from './account-meta/template-configure/template-configure.component';
 import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
 import { TemplateDemoComponent } from './account-meta/template-demo/template-demo.component';
+import {FilterComponent} from './engagement/analytics/filter/filter.component';
+import {CampaignOverviewComponent} from './engagement/campaign/campaign-overview/campaign-overview.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,7 @@ import { TemplateDemoComponent } from './account-meta/template-demo/template-dem
     CategoryComponent,
     CampaignSavedComponent,
     CampaignCreationComponent,
+    FilterComponent,
     ChartsComponent,
     FaqComponent,
     ProfileComponent,
@@ -91,21 +94,22 @@ import { TemplateDemoComponent } from './account-meta/template-demo/template-dem
     TemplateComponent,
     TemplateCatalogComponent,
     TemplateConfigureComponent,
-    TemplateDemoComponent
+    TemplateDemoComponent,
+    CampaignOverviewComponent
   ],
-    imports: [
-        CommonModule,
-        MainRoutingModule,
-        LayoutModule,
-        SharedModule,
-        ChartsModule,
-        AgGridModule.withComponents([]),
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatButtonModule
-    ]
+  imports: [
+    CommonModule,
+    MainRoutingModule,
+    LayoutModule,
+    SharedModule,
+    ChartsModule,
+    AgGridModule.withComponents([]),
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
+  ]
 })
 export class MainModule {
 }

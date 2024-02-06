@@ -1,28 +1,19 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit} from '@angular/core';
 import {CommonService} from '../../../../services/providers/common.service';
-import charts from '../../../../../@shaft-components/data/charts'
-import {getDummyModel} from '../../../../../@shaft-components/data/dummy';
-import {ColDef, GridOptions} from "@ag-grid-community/core"
-import {InfiniteRowModelModule} from "@ag-grid-community/infinite-row-model"
-import {ClientSideRowModelModule} from "@ag-grid-community/client-side-row-model"
-import {HttpClient} from "@angular/common/http"
+import {ColDef, GridOptions} from '@ag-grid-community/core';
+import {InfiniteRowModelModule} from '@ag-grid-community/infinite-row-model';
+import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
+import {HttpClient} from '@angular/common/http';
+import {CommonModalService} from '../../../../services/providers/common-modal.service';
 
 const categories = {
-  'Utilities': '#edb879',
-  'Technology Services': '#1979a9',
-  'Transportation': '#e07b39',
-  'Retail Trade': '#80391e',
-  'Producer Manufacturing': '#042f66',
-  'Health Technology': '#042f66',
-  'Health Services': '#521799',
-  'Finance': '#991717',
-  'Energy Minerals': '#805C33',
-  'Electronic Technology': '#003A52',
-  'Consumer Services': '#008580',
-  'Consumer Non-Durables': '#D1C400',
-  'Consumer Durables': '#850200',
-  'Communications': '#001FD1',
+  'Whatsapp': '#58ff03',
+  'Email': '#e07b39',
+  'In-app': '#042f66',
+  'SMS': '#991717',
+  'Facebook Ads': '#001FD1',
 }
+
 
 const companyCellRenderer = (params) => {
   const {value} = params
@@ -89,11 +80,6 @@ const createRowHelper = (_1, _2, _3, _4, _5, _6, _7, _8, _9) => {
   }
 }
 
-const parseCSV = (csv) => {
-  return csv.split('\n').map(row => row.split(',')).filter(row => row[0])
-}
-
-
 @Component({
   selector: 'app-table-full',
   templateUrl: './campaign-saved.component.html',
@@ -105,23 +91,29 @@ export class CampaignSavedComponent implements OnInit {
   public loading: boolean = false
   public defaultColDef = {}
 
+  public campaignsList = [];
+
   constructor(private http: HttpClient,
+              private modal : CommonModalService,
               private restClient : CommonService) {
   }
 
   ngOnInit(): void {
-    this._getSavedCampaigns();
-    this.createTable()
+    this._getSavedCampaignsAndPopulateGrid();
   }
 
   onRowClicked(event) {
     if(!event.node.selected)
       return;
-    console.log(event.data);
+    console.log("Event ",event)
+    let modalData = {
+      rowData : event.data,
+      campaignDetails: this.campaignsList[event.rowIndex]
+    }
+    this.modal.campaignOverview(modalData).afterClosed().subscribe(() => {
+    });
   }
-
-  createTable() {
-    this.loading = true
+  _getSavedCampaignsAndPopulateGrid() {
     const columnDefs: Array<ColDef> = [
       {
         headerName: 'Company',
@@ -186,42 +178,43 @@ export class CampaignSavedComponent implements OnInit {
         cellRenderer: sectorCellRenderer,
       },
     ]
-    this.http.get('assets/data/stocks.csv', {responseType: 'text'})
-      .subscribe((response) => {
-        const rowData = parseCSV(response).map(row => createRowHelper(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[9], row[10]))
-        this.gridOptions = {
-          columnDefs: columnDefs,
-          rowData: rowData,
-          rowHeight: 40,
-          headerHeight: 40,
-          rowSelection: 'single',
-          defaultColDef: {
-            editable: false,
-            sortable: true,
-            resizable: true,
-          },
-          pagination: true,
-          paginationPageSize: 30,
-          groupSelectsChildren: false,
-          singleClickEdit: false
-        }
-        this.loading = false
-        setTimeout(() => {
-          try {
-            this.gridOptions.api.sizeColumnsToFit()
-          } catch (error) {
-
-          }
-
-        }, 10)
-      })
-  }
-
-  _getSavedCampaigns() {
+    this.loading = true
     this.restClient.invokeDashboardService("marketing/get/campaigns")
       .subscribe(res => {
         let r = JSON.parse(JSON.stringify(res));
-        console.log("Saved Campaigns ",r);
+        if(r.hasOwnProperty("code") && (String(r["code"])).startsWith("S")) {
+          const data = r["data"]
+          this.campaignsList = data
+          let campaignList = [];
+          data.forEach(campaign => {
+            campaignList.push(createRowHelper(campaign.nm + '|' +campaign.cid,"-","-","-","-","-","-","-",campaign.campaignDetails.tgtType));
+          })
+          this.gridOptions = {
+            columnDefs: columnDefs,
+            rowData: campaignList,
+            rowHeight: 40,
+            headerHeight: 40,
+            rowSelection: 'single',
+            defaultColDef: {
+              editable: false,
+              sortable: true,
+              resizable: true,
+            },
+            pagination: true,
+            paginationPageSize: 30,
+            groupSelectsChildren: false,
+            singleClickEdit: false
+          }
+          this.loading = false
+          setTimeout(() => {
+            try {
+              this.gridOptions.api.sizeColumnsToFit()
+            } catch (error) {
+              console.log("Error populating data grid ",error);
+            }
+
+          }, 10)
+        }
       }, (err) => {
         console.log(err);
       });

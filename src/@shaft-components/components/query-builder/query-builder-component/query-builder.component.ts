@@ -66,7 +66,6 @@ export class QueryBuilderComponent implements OnInit {
 
   createTriggerEvtString(triggerEventInfo: any) {
     if (Object.keys(triggerEventInfo).length > 0) {
-      console.log(this.performedEvents[triggerEventInfo['e']]['nm']);
       this.triggerEventString = "As soon as user does " + this.performedEvents[triggerEventInfo['e']]['nm'];
       if (triggerEventInfo['fe']) {
         this.triggerEventString += " where " + this.getPropsName(triggerEventInfo['f'], this.propsMap[triggerEventInfo['e']]) + " " + this.getOperatorName(triggerEventInfo['o']) + " " + triggerEventInfo['v'];
@@ -80,7 +79,6 @@ export class QueryBuilderComponent implements OnInit {
     } else if (mode == 'edit') {
       this.openModal("triggerEvent");
     } else if (mode == 'submit') {
-      console.log(this.triggerEventForm.value);
       this.createTriggerEvtString(this.triggerEventForm.value);
       this.closeModal("triggerEvent");
     }
@@ -94,7 +92,6 @@ export class QueryBuilderComponent implements OnInit {
   }
 
   filterAction(mode, filterType = undefined, index = undefined) {
-    console.log("In filter action")
     filterType != undefined ? this.filterType = filterType : undefined;
     if (mode === 'edit') {
       this.isModeEdit = true;
@@ -134,6 +131,12 @@ export class QueryBuilderComponent implements OnInit {
       this.addQuery();
       this.openModal('filter');
     }
+  }
+
+  cancelQueryAdd(modalId) {
+    this.onReset();
+    this.addQuery();
+    this.closeModal(modalId);
   }
 
   pushSpecificFilter(filter, index = undefined) {
@@ -183,10 +186,8 @@ export class QueryBuilderComponent implements OnInit {
     request['q']['whoDid'] = this.whoDidFilter;
     request['q']['didNot'] = this.whoDidntFilter;
     request['q']['commonProp'] = this.commonProp;
-    console.log("In create Filters : ",request)
     request['filterString'] = this.createFilterString(request);
     request['te'] = this.triggerEventForm.value;
-    console.log(request)
     this.onChange.emit(request);
   }
 
@@ -196,7 +197,6 @@ export class QueryBuilderComponent implements OnInit {
       'didNot': [],
       'commonProp': []
     };
-    console.log("Filter : ",filter)
     for (var i = 0; i < filter['q']['whoDid'].length; i++) {
       var f = filter['q']['whoDid'][i];
       for (var j = 0; j < f.length; j++) {
@@ -241,7 +241,6 @@ export class QueryBuilderComponent implements OnInit {
   }
 
   populateProps($event, index) {
-    console.log("In populate props",$event);
     if (index < this.prop.length) {
       this.prop[index] = this.propsMap[$event.value]
     }
@@ -251,7 +250,7 @@ export class QueryBuilderComponent implements OnInit {
   getPropsName(p, props = []): string {
     var returnObj: string = "";
     props.filter((item) => {
-      if (item.k == p) {
+      if (item.nm == p) {
         returnObj = item.nm
       }
     });
@@ -313,7 +312,6 @@ export class QueryBuilderComponent implements OnInit {
       this.t.removeAt(i);
     }
     this.prop.splice(i, 1);
-    console.log(this.prop)
   }
 
   toggleFilter(index) {

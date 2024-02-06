@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
 
 
   public size = 'sh'
-  public model =   new TableModel();
+  public model = new TableModel();
   isDataLoaded: boolean = false;
 
 
