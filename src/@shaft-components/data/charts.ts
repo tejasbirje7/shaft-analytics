@@ -8,7 +8,14 @@ export const simpleLineChart = {
   },
   series: [{
     data: [820, 932, 901, 934, 1290, 1330, 1320],
-    type: 'line'
+    type: 'line',
+    label: {
+      show: true,
+      position: 'top',
+      textStyle: {
+        fontSize: 15
+      }
+    }
   }]
 }
 
@@ -795,18 +802,18 @@ export const heatMap = () => {
 
 export default [
   simpleLineChart,
-  // basicAreaChart,
-  // stackedAreaChart,
-  // areaPieces,
-  // barBackground,
-  // getBarAdvanced(),
-  // categoryStack,
-  // multipleYAxis,
-  // doughnut,
-  // pie,
-  // scatter,
-  // getSunburst(),
-  // funnel,
-  // treeMap,
-  // heatMap(),
+  basicAreaChart,
+  stackedAreaChart,
+  areaPieces,
+  barBackground,
+  getBarAdvanced(),
+  categoryStack,
+  multipleYAxis,
+  doughnut,
+  pie,
+  scatter,
+  getSunburst(),
+  funnel,
+  treeMap,
+  heatMap(),
 ]
