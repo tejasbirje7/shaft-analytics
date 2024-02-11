@@ -10,6 +10,7 @@ import charts from '../../../../../@shaft-components/data/charts'
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  filterStringsLoaded = false;
   userCount = 0;
   eventCount = 0;
   public charts = [];
@@ -17,6 +18,8 @@ export class FilterComponent implements OnInit {
   needTriggerEvent : boolean= false;
   eventsMeta : any[];
   queryFormed;
+  from :string = "";
+  to: string = "";
   filterStrings = {
     'whoDid' : [],
     'didNot' : [],
@@ -39,22 +42,14 @@ export class FilterComponent implements OnInit {
   }
 
   evaluateQuery() {
-    // this.filterStrings = this.queryFormed["filterString"];
+    console.log("Query Formed ",this.queryFormed)
+    this.filterStrings = this.queryFormed.filterString;
     const request = {};
     request['q'] = this.queryFormed['q'];
     console.log("QueryFormed ",request);
     // this.closeModal('filterName');
     this.getQueryResults(request)
   }
-
-  openModal(id: string) {
-    this.modalService.open(id);
-  }
-
-  closeModal(id: string) {
-    this.modalService.close(id);
-  }
-
   jsDateToEpoch(d) {
     return (d.getTime() - d.getMilliseconds()) / 1000;
   }
@@ -79,11 +74,14 @@ export class FilterComponent implements OnInit {
         let responseData = r.data.data
         let graphData = [];
         let graphAxis = [];
-        responseData.events.forEach(bucket => {
+        let events = responseData.events
+        events.forEach(bucket => {
           evtCount = bucket.u + evtCount;
           graphData.push(bucket.u);
           graphAxis.push(this.epochToJsDate(bucket.from))
         })
+        this.from = this.epochToJsDate(events[0].from);
+        this.to = this.epochToJsDate(events[events.length - 1].to);
         this.eventCount = evtCount;
         this.userCount = responseData.user
         this.charts = [];
@@ -115,6 +113,11 @@ export class FilterComponent implements OnInit {
 
   epochToJsDate(ts) {
     return new Date(ts * 1000).toLocaleDateString();
+  }
+
+  dateFormatter(date) {
+    const d = new Date(date);
+    return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear();
   }
 
 }

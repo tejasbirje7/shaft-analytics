@@ -19,13 +19,16 @@
                     <mat-toolbar class="center">
                       <button mat-raised-button class="done-button" style="margin-right: 20px">Cancel</button>
                       <br>
-                      <button mat-raised-button class="done-button" (click)="query.createFilters();evaluateQuery()">Evaluate</button>
+                      <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="query.createFilters();evaluateQuery()">Evaluate</button>
+                      <br>
+                      <button mat-raised-button class="done-button">Add to board</button>
                     </mat-toolbar>
                   </div>
                 </div>
               </div>
             </div>
-            <div fxFlex="100%" fxFlex.gt-md="25%">
+            <!--            <div fxFlex="100%" fxFlex.gt-md="25%">-->
+            <div fxFlex="100%" fxFlex.gt-md="50%">
               <div fxFlex fxLayout="column" fxLayoutGap="1px">
                 <div fxFlex>
                   <div fxFlex class="app-card app-card--m-0">
@@ -51,30 +54,23 @@
                 </div>
               </div>
             </div>
-            <div fxFlex="100%" fxFlex.gt-md="25%">
+            <div *ngIf="filterStringsLoaded" fxFlex="100%" fxFlex.gt-md="25%">
               <div fxFlex fxLayout="column" fxLayoutGap="1px">
-                <div fxFlex>
-                  <div fxFlex class="app-card app-card--m-0">
-                    <div class="app-card__content">
-                      <div class="absolute bottom-0 right-0 left-0 app-card__content">
-                        <div class="app-productive-heading-03 mb-4">Support</div>
-                        <p class="app-body-short-01">Reach us if you have a specific question</p>
-                      </div>
-                    </div>
-                  </div>
+
+                <div fxLayout="column" fxLayoutAlign="center" class="app-body-short-01 app-card app-card--m-0">
+                  <mat-label style="color: deeppink" class="app-productive-heading-02 ml-3">Date Range</mat-label>
+                  <mat-card-subtitle class="app-productive-heading-01 mt-3 ml-4">{{from}} to {{to}}
+                  </mat-card-subtitle>
+                  <mat-label style="color: deeppink;font-weight: bolder" class="mt-1 ml-3">User's who did</mat-label>
+                  <mat-card-subtitle *ngFor="let f of filterStrings.whoDid" style="padding: 5px;font-weight: bold" class="ml-4">• {{ f }}</mat-card-subtitle>
+                  <br>
+                  <mat-label style="color: deeppink;font-weight: bolder" class="mt-3 ml-3">User's who didn't do</mat-label>
+                  <mat-card-subtitle *ngFor="let f of filterStrings.didNot"  style="padding: 5px;font-weight: bold" class="ml-4">• {{ f }}</mat-card-subtitle>
+                  <br>
+                  <mat-label style="color: deeppink;font-weight: bolder" class="mt-3 ml-3">Common Properties</mat-label>
+                  <mat-card-subtitle *ngFor="let f of filterStrings.commonProp"  style="padding: 5px;font-weight: bold" class="ml-4">•{{ f }}</mat-card-subtitle>
                 </div>
-                <div fxFlex>
-                  <div fxFlex class="app-card app-card--m-0">
-                    <div class="app-card__content">
-                      <div class="absolute bottom-0 right-0 left-0 app-card__content">
-                        <div class="app-productive-heading-03 mb-4">Create
-                          project
-                        </div>
-                        <p class="app-body-short-01">Create your first project and get insights</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
