@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateConfigureComponent } from './template-configure.component';
 
-describe('TemplateConfigureComponent', () => {
+describe('TemplateComponent', () => {
   let component: TemplateConfigureComponent;
   let fixture: ComponentFixture<TemplateConfigureComponent>;
 

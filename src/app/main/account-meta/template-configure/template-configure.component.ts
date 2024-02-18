@@ -1,8 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {CommonModalService} from '../../../services/providers/common-modal.service';
 import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
-import {TemplateConstants} from '../../../utils/constants/template-constants';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RouteConstants} from '../../../utils/constants/route-constants';
+import {CommonService} from '../../../services/providers/common.service';
+
 
 @Component({
   selector: 'app-template-configure',
@@ -10,85 +12,102 @@ import {TemplateConstants} from '../../../utils/constants/template-constants';
   styleUrls: ['./template-configure.component.scss']
 })
 export class TemplateConfigureComponent implements OnInit {
-  type: String;
-  file:boolean;
-  input:boolean;
-  select:boolean;
-  radio:boolean;
-  responseObj = {};
-  radioValue: boolean;
-  radioOptions = [true,false]
-  list: boolean;
-  componentForm: FormGroup;
-  componentFields: FormArray;
-  private uploadedFiles: any;
-  multiFile: boolean;
-  inputText: string;
+  public configuredTemplate : any = {};
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public modalData : TemplateModalData,
-    private _formBuilder: FormBuilder,
-    private templateDialog : MatDialogRef<TemplateConfigureComponent>) { }
+    private route : ActivatedRoute,
+    private restClient : CommonService,
+    private router : Router,
+    private modal : CommonModalService) {
+  }
 
   ngOnInit(): void {
-    console.log("Modal Data ",this.modalData)
-    this.componentForm = this._formBuilder.group({
-      componentFields: this._formBuilder.array([ this.createComponentFields() ])
-    });
-    this.type = this.modalData.fields.type;
-    if(this.type == TemplateConstants.FILE_TYPE) {
-      this.file = true;
-      if(this.modalData.fields.mode == 'multi') {
-        this.multiFile = true;
+    this.route.queryParams.subscribe((params) => {
+      this._getTemplateConfiguration();
+      if(params.hasOwnProperty("id")) {
+        console.log("Params : ",params);
+      } else {
+        console.log("Routed manually");
+        // #TODO Do a network call to fetch template ID for the shop and fetch configuration options
       }
-    }  else if (this.type == TemplateConstants.INPUT_TYPE) {
-      this.input = true;
-    } else if(this.type == TemplateConstants.RADIO_TYPE) {
-      this.radio = true;
-    } else if(this.type == TemplateConstants.LIST_TYPE) {
-      this.list = true;
-    }
-  }
-
-  createComponentFields(): FormGroup {
-    return this._formBuilder.group({
-      description: [""],
     });
   }
 
-  addItem(): void {
-    this.componentFields = this.componentForm.get('componentFields') as FormArray;
-    this.componentFields.push(this.createComponentFields());
+  addTemplateComponent(fields : any,faqIndex,childIndex) {
+    console.log("Fields",fields);
+    console.log("faqIndex",faqIndex);
+    console.log("childIndex",childIndex);
+    let modalData = {} as TemplateModalData;
+    modalData.fields = fields;
+    modalData.faqIndex = faqIndex;
+    modalData.childIndex = childIndex;
+    this.onView(modalData);
   }
 
-  submitData(responseObj) {
-    this.templateDialog.close(responseObj);
+  onView(modalData: TemplateModalData) {
+    this.modal.addTemplateOption(modalData).afterClosed().subscribe(data => {
+      console.log("Data in Modal ",data);
+      console.log("configuredTemplate ",this.configuredTemplate);
+      if(Object.keys(data).length > 0) {
+        const modalData = data.modalData;
+        this.configuredTemplate.templateOptions[modalData.faqIndex].children[modalData.childIndex].content = data.response;
+        console.log(this.configuredTemplate)
+      }
+    })
   }
 
-  fileUploaded(event) {
-    console.log("Files Uploaded : ",event);
-    this.uploadedFiles = event;
+  onOptionsSubmit() {
+    console.log("FAQ : 2 ",this.configuredTemplate);
+    let templateBlobs = {};
+    let formData = new FormData();
+    this.configuredTemplate.templateOptions.forEach((group) => {
+      templateBlobs[group.groupName] = {};
+      group.children.forEach(child => {
+        if(child.fields.type === 'file') {
+          let content = []
+          let title = child.title
+          child.content.forEach((file)  => {
+            formData.append(file.file.name,file.file,file.file.name);
+            if(templateBlobs[group.groupName].hasOwnProperty(title)) {
+              templateBlobs[group.groupName][title].push(file.file.name)
+            } else {
+              templateBlobs[group.groupName][title] =  [file.file.name]
+            }
+            content.push({file : { name : file.file.name }});
+          })
+          child.content = content;
+        }
+      })
+    });
+    formData.append('templateBlobs', JSON.stringify(templateBlobs));
+    formData.append('configuredTemplate',JSON.stringify(this.configuredTemplate));
+    console.log("File Data : ",formData);
+    this._updateTemplateConfiguration(formData);
   }
 
-  closeModal(){
-    this.submitData(this.responseObj);
+  _getTemplateConfiguration() {
+    this.restClient.invokeDashboardService(RouteConstants.GET_TEMPLATE_CONFIG,{})
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        if(r.hasOwnProperty("code") && (String(r["code"])).startsWith("S")) {
+          console.log("Templates Catalog : ",r["data"])
+          this.configuredTemplate = r['data'][0];
+        }
+      }, (err) => {
+        console.log(err);
+      });
   }
 
-  onSubmit(){
-    this.responseObj['modalData'] = this.modalData;
-    if(this.radio) {
-      this.responseObj['response'] = this.radioValue;
-    } else if(this.list) {
-      this.responseObj['response'] = this.componentForm.value.componentFields;
-    } else if(this.file) {
-      this.responseObj['response'] = Array.from(this.uploadedFiles.values());
-    } else if(this.input) {
-      this.responseObj['response'] = this.inputText;
-    }
-    this.submitData(this.responseObj);
+  _updateTemplateConfiguration(formData) {
+    this.restClient.invokeDashboardService(RouteConstants.UPDATE_TEMPLATE_CONFIG,formData)
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        if(r.hasOwnProperty("code") && (String(r["code"])).startsWith("S")) {
+          console.log("Templates Catalog : ",r["data"])
+          // this.configuredTemplate = r['data'][0];
+        }
+      }, (err) => {
+        console.log(err);
+      });
   }
-
 }
-
-
-

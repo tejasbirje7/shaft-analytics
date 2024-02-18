@@ -4,28 +4,32 @@ import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-template-demo',
-  templateUrl: './template-demo.component.html',
-  styleUrls: ['./template-demo.component.scss']
+  selector: 'app-template-catalog-modal',
+  templateUrl: './template-catalog-modal.component.html',
+  styleUrls: ['./template-catalog-modal.component.scss']
 })
-export class TemplateDemoComponent implements OnInit {
+export class TemplateCatalogModalComponent implements OnInit {
+  storeName = "";
+  previewImages = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public modalData : TemplateModalData,
     private router : Router,
-    private templateDemoComponentMatDialogRef : MatDialogRef<TemplateDemoComponent>
+    private templateDemoComponentMatDialogRef : MatDialogRef<TemplateCatalogModalComponent>
   ) { }
 
   ngOnInit(): void {
     console.log("Modal Data ",this.modalData)
+    this.storeName = this.modalData['name'];
+    this.previewImages = this.modalData['preview']
   }
 
   onClose() {
-    this.templateDemoComponentMatDialogRef.close();
+    this.templateDemoComponentMatDialogRef.close('close');
   }
 
   onConfigure() {
-    this.onClose()
+    this.templateDemoComponentMatDialogRef.close('configure');
     //this.router.navigate(['app/configure',this.modalData['id']])
   }
 

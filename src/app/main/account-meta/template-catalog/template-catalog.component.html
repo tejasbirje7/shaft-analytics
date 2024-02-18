@@ -35,20 +35,20 @@
               </div>
             </div>
 
-            <ng-container *ngFor="let category of categoryMap | keyvalue">
+            <ng-container *ngFor="let category of categoryToTemplateMapping | keyvalue">
               <div class="app-subtitle app-subtitle--cards mt-8 ml-2">{{category.key}}</div>
               <div fxLayout="row wrap" class="app-card-row-holder">
-                <ng-container *ngFor="let item of category.value">
+                <ng-container *ngFor="let template of category.value">
                   <div fxFlex="100%" fxFlex.gt-md="11.40%">
                     <div class="app-card app-card--select"
-                         (click)="onSelectItem(item)">
+                         (click)="onSelectItem(template)">
                       <div class="app-card__content__alt">
                         <div class="">
-                          <img class="sm:w-40 rounded-lg border-2 border-solid app-border-container" src={{item.img}}  />
+                          <img class="sm:w-40 rounded-lg border-2 border-solid app-border-container" src={{template.logo}}  />
                           <div>
-                            <div class="app-expressive-heading-01 truncate mt-2">{{item.name}}</div>
+                            <div class="app-expressive-heading-01 truncate mt-2">{{template.name}}</div>
                             <!--                              <div class="app-helper-text-01 mb-2">{{item.category}}</div>-->
-                            <div class="app-label-01 text-muted">{{item.costPrice}}</div>
+                            <div class="app-label-01 text-muted">{{template.price}}</div>
                           </div>
                         </div>
                       </div>

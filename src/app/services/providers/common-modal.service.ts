@@ -3,9 +3,9 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog
 import {OrdersViewComponent} from '../../main/orders/orders-view/orders-view.component';
 import {ItemsUpsertViewComponent} from '../../main/store/items-upsert-view/items-upsert-view.component';
 import {CategoryUpsertViewComponent} from '../../main/store/category-upsert-view/category-upsert-view.component';
-import {TemplateConfigureComponent} from '../../main/account-meta/template-configure/template-configure.component';
+import {TemplateConfigureModalComponent} from '../../main/account-meta/template-configure-modal/template-configure-modal.component';
 import {TemplateModalData} from '../../utils/interfaces/template-interfaces';
-import {TemplateDemoComponent} from '../../main/account-meta/template-demo/template-demo.component';
+import {TemplateCatalogModalComponent} from '../../main/account-meta/template-catalog-modal/template-catalog-modal.component';
 import {CampaignOverviewComponent} from '../../main/engagement/campaign/campaign-overview/campaign-overview.component';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class CommonModalService {
   private ORDER_MODAL: MatDialogRef<OrdersViewComponent>
   private ITEM_EDIT_MODAL: MatDialogRef<ItemsUpsertViewComponent>
   private CATEGORY_EDIT_MODAL: MatDialogRef<CategoryUpsertViewComponent>
-  private TEMPLATE_OPTION: MatDialogRef<TemplateConfigureComponent>
-  private TEMPLATE_DEMO_MODAL: MatDialogRef<TemplateDemoComponent>
+  private TEMPLATE_OPTION: MatDialogRef<TemplateConfigureModalComponent>
+  private TEMPLATE_DEMO_MODAL: MatDialogRef<TemplateCatalogModalComponent>
   private CAMPAIGN_OVERVIEW_MODAL: MatDialogRef<CampaignOverviewComponent>
 
 
@@ -95,7 +95,7 @@ export class CommonModalService {
     config.height = '450px'
     config.data = modalData
 
-    this.TEMPLATE_OPTION = this.dialog.open(TemplateConfigureComponent, config)
+    this.TEMPLATE_OPTION = this.dialog.open(TemplateConfigureModalComponent, config)
     return this.TEMPLATE_OPTION
   }
 
@@ -106,11 +106,11 @@ export class CommonModalService {
     config.viewContainerRef = null
     config.disableClose = false
     config.role = 'dialog'
-    config.width = '500px'
-    config.height = '450px'
+    config.width = '1500px'
+    config.height = '800px'
     config.data = modalData
 
-    this.TEMPLATE_DEMO_MODAL = this.dialog.open(TemplateDemoComponent, config);
+    this.TEMPLATE_DEMO_MODAL = this.dialog.open(TemplateCatalogModalComponent, config);
     return this.TEMPLATE_DEMO_MODAL;
 
   }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
 import {CommonModalService} from '../../../services/providers/common-modal.service';
+import {ColDef} from '@ag-grid-community/core';
+import {RouteConstants} from '../../../utils/constants/route-constants';
+import {CommonService} from '../../../services/providers/common.service';
 
 @Component({
   selector: 'app-template-catalog',
@@ -10,42 +13,52 @@ import {CommonModalService} from '../../../services/providers/common-modal.servi
 })
 export class TemplateCatalogComponent implements OnInit {
 
-  categoryMap : any = {};
+  templates : any[];
+  categoryToTemplateMapping : any = {};
 
   constructor(
     //private router : Router,
     private modal : CommonModalService,
+    private restClient : CommonService,
     private router : Router
   ) { }
 
   ngOnInit(): void {
-    this.categoryMap = {
-      'Snack delivery services' : [
-        {
-          id : 'BIO84398HF0H09DF-09JF-9HVNF89VU',
-          img : 'assets/img/avatar/avatar2.jpg',
-          name :'Khamang',
-          costPrice:'300'
-        }]
-    }
-    console.log("Category Map : ",this.categoryMap);
+    this._getTemplateCatalog();
+  }
+
+  populateCategoryToTemplateMap(){
+    this.templates.forEach(template => {
+      if(this.categoryToTemplateMapping.hasOwnProperty(template.cg)) {
+        this.categoryToTemplateMapping[template.cg].push(template);
+      } else {
+        this.categoryToTemplateMapping[template.cg] = [template];
+      }
+    })
+    console.log("CG to template map ",this.categoryToTemplateMapping);
   }
 
   onSelectItem(item) {
     this.modal.viewTemplateDemo(item).afterClosed().subscribe(data => {
       console.log("Data in Modal ",data);
-      this.router.navigateByUrl('/app/configure?id=' + item.id );
+      if(data === 'configure') {
+        this.router.navigateByUrl('/app/configure?id=' + item.id );
+      }
     });
   }
 
-  // onView(modalData: TemplateModalData) {
-  //   this.modal.addTemplateOption(modalData).afterClosed().subscribe(data => {
-  //     console.log("Data in Modal ",data);
-  //     //console.log(this.faq[data.modalData.faqIndex]);
-  //     const modalData = data.modalData;
-  //     this.faq2[modalData.faqIndex].children[modalData.childIndex].content = data.response;
-  //     console.log(this.faq2)
-  //   })
-  // }
+  _getTemplateCatalog() {
+    this.restClient.invokeDashboardService(RouteConstants.TEMPLATES_CATALOG,{})
+      .subscribe(res => {
+        let r = JSON.parse(JSON.stringify(res));
+        if(r.hasOwnProperty("code") && (String(r["code"])).startsWith("S")) {
+          console.log("Templates Catalog : ",r["data"])
+          this.templates = r['data'];
+          this.populateCategoryToTemplateMap();
+        }
+      }, (err) => {
+        console.log(err);
+      });
+  }
 
 }

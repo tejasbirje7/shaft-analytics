@@ -1,65 +1,48 @@
-<ng-container>
-  <mat-icon class="bell-icon" color="black" name="close"></mat-icon>
-
-  <div *ngIf="file" class="parent">
-    <ibm-file-uploader
-      [title]="'File uploader'"
-      [description]="'only jpg, png'"
-      [buttonText]="'+'"
-      [buttonType]="'ghost'"
-      [accept]="'.png,image/jpeg'"
-      [multiple]="multiFile"
-      (filesChange)="fileUploaded($event)"
-      [size]="'normal'"
-      [disabled]="false">
-    </ibm-file-uploader>
-  </div>
-
-  <div *ngIf="radio" class="parent">
-    <label id="example-radio-group-label">Select if you want to enable / disable</label>
-    <mat-radio-group
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      [(ngModel)]="radioValue">
-      <mat-radio-button class="example-radio-button" *ngFor="let option of radioOptions" [value]="option">
-        {{option}}
-      </mat-radio-button>
-    </mat-radio-group>
-  </div>
+<div class="app-a-box app-scrollbar-fix">
+  <ng-scrollbar>
+    <shaft-header>
+    </shaft-header>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex="100%" fxFlex.gt-md="80%" fxFlex.gt-lg="70%" class="app-content app-content--default">
 
 
-  <div *ngIf="input" class="parent">
-    <mat-form-field color='accent'>
-      <mat-label>What's Trending</mat-label>
-      <input [(ngModel)]="inputText" matInput style="color: black;font-weight: bolder">
-      <!--      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>-->
-      <!--      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>-->
-    </mat-form-field>
-  </div>
-
-  <div *ngIf="list" class="parent">
-    <form [formGroup]="componentForm">
-      <div
-        class="parent"
-        formArrayName="componentFields"
-        *ngFor="let field of componentForm.get('componentFields')['controls']; let i = index;"
-      >
-        <mat-form-field color='accent'>
-          <div class="mb-2" [formGroupName]="i">
-            <input matInput formControlName="description" placeholder="Item description">
+        <!--        PAGE HEADER -->
+        <ng-container *ngFor="let templateInfo of configuredTemplate.templateOptions;let faqIndex=index">
+          <div class="mb-6">
+            <div class="app-productive-heading-03 mb-2">{{templateInfo.groupName}}</div>
+            <div class="app-card app-card--m-0">
+              <div class="app-card__content__fill">
+                <!--                PAGE CONTENTS -->
+                <ibm-accordion>
+                  <ng-container *ngFor="let option of templateInfo.children;let childIndex=index">
+                    <ibm-accordion-item [title]="option.title">
+                      <div *ngIf="option.fields.type === 'list'">
+                        <mat-label>{{option.content}}</mat-label>
+                      </div>
+                      <div *ngIf="option.fields.type === 'radio'">
+                        <mat-label>{{option.content}}</mat-label>
+                      </div>
+                      <div *ngIf="option.fields.type === 'input'">
+                        <mat-label>{{option.content}}</mat-label>
+                      </div>
+                      <div *ngIf="option.fields.type === 'file'">
+                        <mat-list *ngFor="let f of option.content">
+                          <mat-list-item>{{f.file.name}}</mat-list-item>
+                        </mat-list>
+                      </div>
+                      <div class="mt-2" >
+                        <button mat-raised-button class="done-button" (click)="addTemplateComponent(option.fields,faqIndex,childIndex)">Add</button>
+                      </div>
+                    </ibm-accordion-item>
+                  </ng-container>
+                </ibm-accordion>
+              </div>
+            </div>
+            <button mat-button style="margin-right: 10px;" mat-raised-button color="accent" (click)="onOptionsSubmit()">Publish</button>
           </div>
-        </mat-form-field>
+        </ng-container>
       </div>
+    </div>
+  </ng-scrollbar>
+</div>
 
-    </form>
-  </div>
-
-
-  <mat-toolbar class="center mt-2">
-    <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="addItem()">Add</button>
-    <br>
-    <button mat-raised-button class="done-button" style="margin-right: 20px" (click)="onSubmit()">Done</button>
-    <br>
-    <button mat-raised-button class="done-button" (click)="closeModal()">Cancel</button>
-  </mat-toolbar>
-</ng-container>

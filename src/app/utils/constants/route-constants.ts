@@ -11,4 +11,8 @@ export class RouteConstants {
     public static SAVE_CATEGORY : string = "catalog/categories/save"
     public static UPDATE_ITEM : string = "catalog/items/update"
     public static UPDATE_CATEGORY : string = "catalog/categories/update"
+    public static TEMPLATES_CATALOG : string = "customer/templates/get/catalog"
+    public static GET_TEMPLATE_CONFIG : string = "customer/template/get/config"
+    public static SAVE_TEMPLATE_CONFIG : string = "customer/template/save/config"
+    public static UPDATE_TEMPLATE_CONFIG : string = "customer/template/update/config"
 }

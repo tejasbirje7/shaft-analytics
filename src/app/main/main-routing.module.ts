@@ -15,7 +15,7 @@ import {CategoryComponent} from './store/category/category.component';
 import {TableBasicComponent} from './account-meta/events/table-basic.component';
 import {InvoiceComponent} from './account-meta/billing/invoice.component';
 import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
-import {TemplateComponent} from './account-meta/template/template.component';
+import {TemplateConfigureComponent} from './account-meta/template-configure/template-configure.component';
 import {FilterComponent} from './engagement/analytics/filter/filter.component';
 const routeForPages = [
   {
@@ -142,7 +142,7 @@ const routeForPages = [
   },
   {
     path: 'configure',
-    component: TemplateComponent,
+    component: TemplateConfigureComponent,
     data: {
       breadcrumb: 'Template'
     }

@@ -47,10 +47,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CategoryUpsertViewComponent } from './store/category-upsert-view/category-upsert-view.component';
-import { TemplateComponent } from './account-meta/template/template.component';
 import { TemplateConfigureComponent } from './account-meta/template-configure/template-configure.component';
+import { TemplateConfigureModalComponent } from './account-meta/template-configure-modal/template-configure-modal.component';
 import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
-import { TemplateDemoComponent } from './account-meta/template-demo/template-demo.component';
+import { TemplateCatalogModalComponent } from './account-meta/template-catalog-modal/template-catalog-modal.component';
 import {FilterComponent} from './engagement/analytics/filter/filter.component';
 import {CampaignOverviewComponent} from './engagement/campaign/campaign-overview/campaign-overview.component';
 
@@ -91,10 +91,10 @@ import {CampaignOverviewComponent} from './engagement/campaign/campaign-overview
     ProfileComponent,
     InvoiceComponent,
     CategoryUpsertViewComponent,
-    TemplateComponent,
-    TemplateCatalogComponent,
     TemplateConfigureComponent,
-    TemplateDemoComponent,
+    TemplateCatalogComponent,
+    TemplateConfigureModalComponent,
+    TemplateCatalogModalComponent,
     CampaignOverviewComponent
   ],
   imports: [
