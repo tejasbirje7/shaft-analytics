@@ -35,16 +35,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
       opened: true,
       children: [
         {
-          name: 'Dashboard',
-          url: '/app/dashboard/default',
-          prefix: {
-            type: 'ibm-icon',
-            name: 'home',
-          },
-        },
-        {
-          name: 'Platform analytics',
-          url: '/app/dashboard/analytics',
+          name: 'Shaft Board',
+          url: '/app/dashboard/shaft-board',
           prefix: {
             type: 'ibm-icon',
             name: 'activity',

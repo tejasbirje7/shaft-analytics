@@ -4,6 +4,7 @@ import {TemplateModalData} from '../../../utils/interfaces/template-interfaces';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RouteConstants} from '../../../utils/constants/route-constants';
 import {CommonService} from '../../../services/providers/common.service';
+import {GlobalfieldsService} from '../../../services/app_cache/globalfields.service';
 
 
 @Component({
@@ -18,17 +19,22 @@ export class TemplateConfigureComponent implements OnInit {
     private route : ActivatedRoute,
     private restClient : CommonService,
     private router : Router,
+    private globalFieldService : GlobalfieldsService,
     private modal : CommonModalService) {
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this._getTemplateConfiguration();
-      if(params.hasOwnProperty("id")) {
-        console.log("Params : ",params);
+      if(this.globalFieldService.isAccountIdSet()) {
+        this._getTemplateConfiguration();
       } else {
-        console.log("Routed manually");
-        // #TODO Do a network call to fetch template ID for the shop and fetch configuration options
+        // #TODO popup should be appear that template not selected to be configured
+        if(params.hasOwnProperty("id")) {
+          console.log("Params : ",params);
+        } else {
+          console.log("Routed manually");
+          // #TODO Do a network call to fetch template ID for the shop and fetch configuration options
+        }
       }
     });
   }

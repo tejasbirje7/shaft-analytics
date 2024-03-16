@@ -1,0 +1,380 @@
+<div class="app-a-box app-scrollbar-fix">
+  <ng-scrollbar>
+
+    <div fxLayout="row wrap" class="app-header app-header--hero">
+      <div class="app_header__tools">
+        <button ibmButton="primary" size="sm" class="mr-1">
+          Invoices
+        </button>
+        <button ibmButton="tertiary" size="sm" fxHide fxShow.gt-sm>
+          Schedule
+          <svg class="bx--btn__icon" ibmIconAdd size="20"></svg>
+        </button>
+      </div>
+      <div fxFlex="100%" fxFlex.gt-sm="50%" class="relative z-10">
+        <div>
+          <span class="app-expressive-heading-06 mr-2">Shaft</span>
+          <span class="app-expressive-heading-03">- Drive Digital</span>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="mx-4">
+      <div fxFlex="100%" fxFlex.gt-sm="50%" class="mt-4">
+        <ibm-combo-box
+          style="width:200px"
+          [placeholder]="'Filter group...'"
+          [items]="comboboxItems"
+          size="md"
+          [appendInline]="false">
+          <ibm-dropdown-list></ibm-dropdown-list>
+        </ibm-combo-box>
+      </div>
+      <div fxFlex="100%" fxFlex.gt-sm="50%" class="mt-4">
+        <div class="text-left lg:text-right">
+          <span class="app-label-01 mr-3">Date range</span>
+          <ibm-date-picker
+            class="app-inline-block"
+            size="md" range="true">
+          </ibm-date-picker>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" class="app-card-row-holder">
+      <div fxFlex="100%" fxFlex.gt-lg="60%">
+        <div fxFlex fxLayout="row wrap">
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__header">
+                <div class="app-expressive-heading-03 mb-8">Reviews</div>
+                <div class="app-label-01">Current</div>
+                <div>
+                  <span class="app-expressive-heading-06 mr-2">1,231</span>
+                  <shaft-ibm-icon iconName="arrowUp" class="app-color-success"></shaft-ibm-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__header">
+                <div class="app-expressive-heading-03 mb-8">Campaigns</div>
+                <div class="app-label-01">Current</div>
+                <div>
+                  <span class="app-expressive-heading-06 mr-2">566</span>
+                  <shaft-ibm-icon iconName="arrowUp" class="app-color-success"></shaft-ibm-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__header">
+                <div class="app-expressive-heading-03 mb-8">Users</div>
+                <div class="app-label-01">Current</div>
+                <div>
+                  <span class="app-expressive-heading-06 mr-2">11,122</span>
+                  <shaft-ibm-icon iconName="arrowUp" class="app-color-success"></shaft-ibm-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card app-card--bt-warning">
+              <div class="app-card__header">
+                <div class="app-expressive-heading-03 mb-8">Downloads</div>
+                <div class="app-label-01">Current</div>
+                <div>
+                  <span class="app-expressive-heading-06 mr-2">234,122</span>
+                  <shaft-ibm-icon iconName="arrowDown" class="app-color-danger"></shaft-ibm-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__tool app-card__tool--sign">
+                <div class="app-card__tool__sign app-card__tool__sign--danger"></div>
+              </div>
+              <div class="app-card__header">
+                <div class="app-expressive-heading-02">Alerts</div>
+                <div class="app-label-01">Last 24hrs</div>
+              </div>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="chartOptions3" class="app-echarts-component"
+                               style="height: 100px;"></shaft-echarts>
+              </shaft-echarts-container>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__tool app-card__tool--sign">
+                <div class="app-card__tool__sign app-card__tool__sign--success"></div>
+              </div>
+              <div class="app-card__header">
+                <div class="app-expressive-heading-02">Revenue</div>
+                <div class="app-label-01">Current month</div>
+              </div>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="chartOptions" class="app-echarts-component"
+                               style="height: 100px;"></shaft-echarts>
+              </shaft-echarts-container>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__tool app-card__tool--sign">
+                <div class="app-card__tool__sign app-card__tool__sign--warning"></div>
+              </div>
+              <div class="app-card__header">
+                <div class="app-expressive-heading-02">Customers</div>
+                <div class="app-label-01">Last 6 month</div>
+              </div>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="chartOptions4" class="app-echarts-component"
+                               style="height: 100px;"></shaft-echarts>
+              </shaft-echarts-container>
+            </div>
+          </div>
+          <div fxFlex="50%" fxFlex.gt-md="25%">
+            <div class="app-card">
+              <div class="app-card__tool app-card__tool--sign">
+                <div class="app-card__tool__sign app-card__tool__sign--success"></div>
+              </div>
+              <div class="app-card__header">
+                <div class="app-expressive-heading-02">Profit</div>
+                <div class="app-label-01">Last month</div>
+              </div>
+              <shaft-echarts-container>
+                <shaft-echarts [options]="chartOptions2" class="app-echarts-component"
+                               style="height: 100px;"></shaft-echarts>
+              </shaft-echarts-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex="100%" fxFlex.gt-lg="40%">
+        <div class="app-card" fxFlex>
+          <div class="app-card__tool">
+            <button ibmButton="tertiary" size="sm" class="bx--btn--icon-only">
+              <svg class="bx--btn__icon" ibmIconRenew size="32"></svg>
+            </button>
+            <button ibmButton="tertiary" size="sm" class="bx--btn--icon-only">
+              <svg class="bx--btn__icon" ibmIconOverflowMenuVertical size="32"></svg>
+            </button>
+          </div>
+          <div class="app-card__header pb-0">
+            <div class="app-expressive-heading-03">App usage</div>
+            <div class="app-label-01">Working days</div>
+          </div>
+          <div class="app-card__content">
+            <shaft-echarts-container>
+              <shaft-echarts [options]="punchCardOpts" class="app-echarts-component" style="height: 210px;"></shaft-echarts>
+            </shaft-echarts-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div fxLayout="row wrap" class="app-card-row-holder">
+      <div fxFlex="100%" fxFlex.gt-lg="100%">
+        <div class="app-card">
+          <div class="app-card__header app-card__header--border">
+            <div class="app-row app-row--center">
+              <div class="app-symbol app-symbol--default mr-3 rounded">
+                <div class="app-symbol__label w-12 h-10 app-expressive-heading-01 app-color-info">
+                  SaaS
+                </div>
+              </div>
+              <div>
+                <div class="app-expressive-heading-03">Campaign Analysis</div>
+                <div class="app-label-01">Production environment of <span class="font-bold">US Region</span></div>
+              </div>
+              <div class="flex-1 flex justify-end" fxHide fxShow.gt-sm>
+                <ibm-combo-box
+                  style="width:200px"
+                  [placeholder]="'Filter period...'"
+                  theme="light"
+                  [items]="[]"
+                  size="md"
+                  [appendInline]="false">
+                  <ibm-dropdown-list></ibm-dropdown-list>
+                </ibm-combo-box>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row wrap">
+            <div fxFlex="100%" fxFlex.gt-lg="75%">
+              <ng-container *ngIf="!loading">
+                <div class="app-card__content">
+                  <shaft-echarts-container>
+                    <shaft-echarts [options]="mainChartOpts" class="app-echarts-component"
+                                   style="height: 400px;"></shaft-echarts>
+                  </shaft-echarts-container>
+                </div>
+              </ng-container>
+            </div>
+            <div fxFlex="100%" fxFlex.gt-lg="25%">
+              <div class="app-card__content">
+
+                <div class="mb-6 mt-4">
+                  <div class="flex justify-between mb-1">
+                    <div class="app-productive-heading-01">NEW USERS</div>
+                    <div class="app-helper-text-01 text-muted">32% goal reached</div>
+                  </div>
+                  <div class="flex justify-between mb-4">
+                    <div class="app-productive-heading-03">11,122</div>
+                    <div class="app-helper-text-01 justify-center flex">21 100</div>
+                  </div>
+                  <div>
+                    <div class="app-progress app-progress--small">
+                      <div class="app-progress__bar app-bg-warning" style="width:32%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <div class="flex justify-between mb-1">
+                    <div class="app-productive-heading-01">PAGE CRT</div>
+                    <div class="app-helper-text-01 text-muted">66% goal reached</div>
+                  </div>
+                  <div class="flex justify-between mb-4">
+                    <div class="app-productive-heading-03">5,322</div>
+                    <div class="app-helper-text-01 justify-center flex">210 100</div>
+                  </div>
+                  <div>
+                    <div class="app-progress app-progress--small">
+                      <div class="app-progress__bar app-bg-success" style="width:66%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <div class="flex justify-between mb-1">
+                    <div class="app-productive-heading-01">CHURN USERS</div>
+                    <div class="app-helper-text-01 text-muted">11% of total</div>
+                  </div>
+                  <div class="flex justify-between mb-4 align-bottom">
+                    <div class="app-productive-heading-03">1,323</div>
+                    <div class="app-helper-text-01 justify-center flex">3,333</div>
+                  </div>
+                  <div>
+                    <div class="app-progress app-progress--small">
+                      <div class="app-progress__bar app-bg-success" style="width:11%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <div class="app-productive-heading-01">CONVERSIONS</div>
+                    <div class="app-helper-text-01 text-muted">78% goal reached</div>
+                  </div>
+                  <div class="flex justify-between mb-4">
+                    <div class="app-productive-heading-03">78,976</div>
+                    <div class="app-helper-text-01 justify-center flex">12 200</div>
+                  </div>
+                  <div>
+                    <div class="app-progress app-progress--small">
+                      <div class="app-progress__bar app-bg-success" style="width:78%"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div fxFlex="100%" fxFlex.gt-lg="100%">
+              <div fxLayout="row wrap" class="app-card__blocks app-border-t">
+                <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
+                  <div class="flex justify-between">
+                    <div class="">
+                      <div>
+                        <span class="app-productive-heading-03 mr-2">$ 12,333</span>
+                        <span class="app-label-01 text-muted">+35%</span>
+                      </div>
+                      <div class="app-helper-text-01">TOTAL COST</div>
+                    </div>
+                    <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
+                  </div>
+                </div>
+                <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
+                  <div class="flex justify-between">
+                    <div class="">
+                      <div>
+                        <span class="app-productive-heading-03 mr-2">122,333</span>
+                        <span class="app-label-01 text-muted">+12%</span>
+                      </div>
+                      <div class="app-helper-text-01">TOTAL USERS</div>
+                    </div>
+                    <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
+                  </div>
+                </div>
+
+                <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
+                  <div class="flex justify-between">
+                    <div class="">
+                      <div>
+                        <span class="app-productive-heading-03 mr-2">1000ms</span>
+                        <span class="app-label-01 text-muted">-11%</span>
+                      </div>
+                      <div class="app-helper-text-01">AVG DELAY</div>
+                    </div>
+                    <shaft-ibm-icon iconName="arrowDown" iconSize="32" class="app-color-danger mt-1"></shaft-ibm-icon>
+                  </div>
+                </div>
+
+                <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
+                  <div class="flex justify-between">
+                    <div class="">
+                      <div>
+                        <span class="app-productive-heading-03 mr-2">1,100ms</span>
+                        <span class="app-label-01 text-muted">+2%</span>
+                      </div>
+                      <div class="app-helper-text-01">MEDIAN WORKLOAD</div>
+                    </div>
+                    <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
+                  </div>
+                </div>
+
+                <div fxFlex="100%" fxFlex.gt-md="20%" class="app-card__block">
+                  <div class="flex justify-between">
+                    <div class="">
+                      <div>
+                        <span class="app-productive-heading-03 mr-2">$ 511</span>
+                        <span class="app-label-01 text-muted">+78%</span>
+                      </div>
+                      <div class="app-helper-text-01">AVG PURCHASE</div>
+                    </div>
+                    <shaft-ibm-icon iconName="arrowUp" iconSize="32" class="app-color-success mt-1"></shaft-ibm-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </ng-scrollbar>
+</div>

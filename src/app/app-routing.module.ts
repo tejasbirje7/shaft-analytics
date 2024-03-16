@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core'
 import {Routes, RouterModule} from '@angular/router'
+import {DashboardGuard} from './services/guards/dashboard.guard';
 
 // @ts-ignore
 const routes: Routes = [
@@ -8,6 +9,7 @@ const routes: Routes = [
     data:{
       breadcrumb: 'Home'
     },
+    canActivate: [DashboardGuard],
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
@@ -16,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/app/dashboard/default',
+    redirectTo: '/auth/modern/signin',
     pathMatch: 'full',
   },
 ]

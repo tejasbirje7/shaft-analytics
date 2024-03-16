@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core'
 import {Routes, RouterModule} from '@angular/router'
 
 import {LayoutComponent} from '../layout/default/layout.component'
-import {DashboardDefaultComponent} from "./dashboard/dashboard-default/dashboard-default.component"
-import {DashboardAnalyticsComponent} from "./dashboard/dashboard-analytics/dashboard-analytics.component"
 import {OrdersBoardComponent} from "./orders/orders-board/orders-board.component"
 import {ItemsComponent} from "./store/items/items.component"
 import {CampaignSavedComponent} from './engagement/campaign/saved/campaign-saved.component';
@@ -17,6 +15,7 @@ import {InvoiceComponent} from './account-meta/billing/invoice.component';
 import {TemplateCatalogComponent} from './account-meta/template-catalog/template-catalog.component';
 import {TemplateConfigureComponent} from './account-meta/template-configure/template-configure.component';
 import {FilterComponent} from './engagement/analytics/filter/filter.component';
+import {ShaftBoardComponent} from './dashboard/shaft-board/shaft-board.component';
 const routeForPages = [
   {
     path: 'dashboard',
@@ -25,15 +24,8 @@ const routeForPages = [
     },
     children: [
       {
-        path: 'default',
-        component: DashboardDefaultComponent,
-        data: {
-          breadcrumb: 'Default'
-        },
-      },
-      {
-        path: 'analytics',
-        component: DashboardAnalyticsComponent,
+        path: 'shaft-board',
+        component: ShaftBoardComponent,
         data: {
           breadcrumb: 'Analytics'
         },
@@ -149,7 +141,7 @@ const routeForPages = [
   },
   {
     path: '**',
-    redirectTo: '/app/dashboard/default',
+    redirectTo: '/app/dashboard/shaft-board',
     pathMatch: 'full',
   },
 ]

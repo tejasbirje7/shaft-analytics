@@ -7,8 +7,7 @@ import {AgGridModule} from '@ag-grid-community/angular'
 import {ChartsModule} from '../../@shaft-components'
 import {MainRoutingModule} from './main-routing.module'
 
-import {DashboardDefaultComponent} from './dashboard/dashboard-default/dashboard-default.component'
-import {DashboardAnalyticsComponent} from './dashboard/dashboard-analytics/dashboard-analytics.component'
+import {ShaftBoardComponent} from './dashboard/shaft-board/shaft-board.component';
 import { StarterFullWidthBasicComponent } from './starters/full-width/starter-full-width-basic/starter-full-width-basic.component';
 import { StarterFullWidthHeaderComponent } from './starters/full-width/starter-full-width-header/starter-full-width-header.component';
 import { StarterFullWidthTabsComponent } from './starters/full-width/starter-full-width-tabs/starter-full-width-tabs.component';
@@ -27,9 +26,6 @@ import {DummyTableExpansionComponent} from './components/dummy-table-expansion/d
 import {DummyTableAdvancedComponent} from './components/dummy-table-advanced/dummy-table-advanced.component'
 import {DummyTablePaginationComponent} from './components/dummy-table-pagination/dummy-table-pagination.component'
 import {DummyTableRichComponent} from './components/dummy-table-rich/dummy-table-rich.component'
-import {DummyFormCreditCardComponent} from './components/dummy-form-credit-card/dummy-form-credit-card.component'
-import {DummyFormBillingComponent} from './components/dummy-form-billing/dummy-form-billing.component'
-import {DummyFormWizardComponent} from './components/dummy-form-wizard/dummy-form-wizard.component'
 import {OrdersBoardComponent} from './orders/orders-board/orders-board.component'
 import {OrdersViewComponent} from './orders/orders-view/orders-view.component'
 import {CampaignSavedComponent} from './engagement/campaign/saved/campaign-saved.component';
@@ -56,15 +52,11 @@ import {CampaignOverviewComponent} from './engagement/campaign/campaign-overview
 
 @NgModule({
   declarations: [
-    DashboardDefaultComponent,
-    DashboardAnalyticsComponent,
+    ShaftBoardComponent,
     DummyTableExpansionComponent,
     DummyTableAdvancedComponent,
     DummyTablePaginationComponent,
     DummyTableRichComponent,
-    DummyFormCreditCardComponent,
-    DummyFormBillingComponent,
-    DummyFormWizardComponent,
     StarterFullWidthBasicComponent,
     StarterFullWidthHeaderComponent,
     StarterFullWidthTabsComponent,

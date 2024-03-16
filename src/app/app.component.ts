@@ -58,5 +58,6 @@ export class AppComponent implements OnInit {
 
       }
     })
+    // #TODO on refresh verify token time and decide if user should get logout and login
   }
 }

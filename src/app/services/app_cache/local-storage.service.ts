@@ -68,6 +68,7 @@ export class LocalStorageService {
     return false;
   }
 
+  // @ts-ignore
   get isLocalStorageSupported(): boolean {
     return !!this.localStorage
   }
