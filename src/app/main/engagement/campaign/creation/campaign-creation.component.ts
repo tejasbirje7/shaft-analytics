@@ -38,7 +38,16 @@ export class CampaignCreationComponent implements OnInit {
       "tgtType" : "Facebook Ads",
       "tgtValue" : 5
     },
-
+  ]
+  campaignMode = [
+    {
+      "mode" : "PBS",
+      "value" : 0
+    },
+    {
+      "mode" : "Online",
+      "value" : 1
+    }
   ]
   displayFilter: any = {};
   filterStrings = {
@@ -55,6 +64,7 @@ export class CampaignCreationComponent implements OnInit {
     end: new FormControl()
   });
   selectedCampaignType: any;
+  selectedCampaignMode: any;
 
   constructor(
     private restClient : CommonService,
@@ -86,12 +96,13 @@ export class CampaignCreationComponent implements OnInit {
     console.log("QueryFormed ",this.queryFormed, " Campaign type ",this.selectedCampaignType);
     this.filterStrings = this.queryFormed["filterString"];
     const request = {};
-    request['campaignDetails'] = this.selectedCampaignType;
     request['q'] = this.queryFormed['q'];
     request['te'] = this.queryFormed['te'];
     request['nm'] = this.filterName.value;
     request['fs'] = this.filterStrings;
     request['cid'] = this.jsDateToEpoch(new Date());
+    request['type'] = this.selectedCampaignType.tgtValue;
+    request['mode'] = this.selectedCampaignMode.value;
     let formData = new FormData();
     this.uploadedFiles.forEach((file) => {
       formData.append('files',file.file,file.file.name);

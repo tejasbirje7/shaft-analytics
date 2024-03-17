@@ -6,11 +6,32 @@
       <div fxFlex="100%" fxFlex.gt-md="70%" fxFlex.gt-lg="50%" class="app-content app-content--default">
         <mat-card>
 
-
-          <!--            STEP - 1 -->
           <mat-accordion class="example-headers-align">
 
+            <!--            STEP - 1 -->
             <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="color: indigo;font-weight: bolder" >
+                  Campaign Mode
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                [(ngModel)]="selectedCampaignMode">
+                <ng-container *ngFor="let mode of campaignMode;let i = index">
+                  <mat-radio-button style="color: indigo;font-weight: bolder;" class="ml-4" [value]="mode">{{mode.mode}}</mat-radio-button>
+                </ng-container>
+              </mat-radio-group>
+
+              <mat-action-row>
+                <button mat-button color="primary" (click)="query.createFilters();nextStep()">Next</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <!--            STEP - 2 -->
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title style="color: indigo;font-weight: bolder" >
                   Campaign Type
@@ -21,8 +42,8 @@
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group"
                 [(ngModel)]="selectedCampaignType">
-                <ng-container *ngFor="let campaign of campaignTypes;let i = index">
-                  <mat-radio-button style="color: indigo;font-weight: bolder;" class="ml-4" [value]="campaign">{{campaign.tgtType}}</mat-radio-button>
+                <ng-container *ngFor="let type of campaignTypes;let i = index">
+                  <mat-radio-button style="color: indigo;font-weight: bolder;" class="ml-4" [value]="type">{{type.tgtType}}</mat-radio-button>
                 </ng-container>
               </mat-radio-group>
 
@@ -31,9 +52,9 @@
               </mat-action-row>
             </mat-expansion-panel>
 
-            <!--            STEP - 2 -->
 
-            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <!--            STEP - 3 -->
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title style="color: indigo;font-weight: bolder" >
                   Target users
@@ -47,9 +68,8 @@
             </mat-expansion-panel>
 
 
-            <!--            STEP - 3 -->
-
-            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <!--            STEP - 4 -->
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title style="color: indigo;font-weight: bolder" >
                   Content to render
