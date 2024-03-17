@@ -8,8 +8,9 @@ import {LocalStorageService} from '../app_cache/local-storage.service';
 //const host = "13.232.148.77";
 const host = "localhost"
 const apiUrl = "http://"+host+":8080";
-const dashboardUrl = "https://shaftinsights.com";
-const testUrl = "httpgt5://"+host+":3000";
+// const dashboardUrl = "https://shaftinsights.com";
+const dashboardUrl = "http://"+host+":8080";
+const testUrl = "http://"+host+":3000";
 
 @Injectable({
   providedIn: 'root'

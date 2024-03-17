@@ -10,6 +10,7 @@ import {ModalService} from '../../../../app/services/providers/modal.service';
 export class QueryBuilderComponent implements OnInit {
   @Input() triggerEvent: boolean;
   @Input() eventsMeta: [];
+  @Input() propsMeta: [];
   @Output() onChange = new EventEmitter();
 
   isLinear = false;
@@ -43,6 +44,7 @@ export class QueryBuilderComponent implements OnInit {
   ];
   triggerEventForm: FormGroup;
   triggerEventString = "";
+  commonPropsSelected = false;
 
   constructor(
     private modal: ModalService,
@@ -55,7 +57,7 @@ export class QueryBuilderComponent implements OnInit {
       queryBuilder: new FormArray([])
     });
     this.triggerEventForm = this._formBuilder.group({
-      e: [-1, Validators.required],
+      e: [-1],
       fe: [false],
       o: [''],
       f: [''],
@@ -92,6 +94,7 @@ export class QueryBuilderComponent implements OnInit {
   }
 
   filterAction(mode, filterType = undefined, index = undefined) {
+    this.commonPropsSelected = filterType == "commonProp";
     filterType != undefined ? this.filterType = filterType : undefined;
     if (mode === 'edit') {
       this.isModeEdit = true;
@@ -100,7 +103,7 @@ export class QueryBuilderComponent implements OnInit {
       const f = this.getSpecificFilter(index);
       for (let j = 0; j < f.length; j++) {
         this.t.push(this._formBuilder.group({
-          e: [f[j]['e'], Validators.required],
+          e: [f[j]['e']],
           fe: [f[j]['fe']],
           o: [f[j]['o']],
           f: [f[j]['f']],
@@ -112,11 +115,13 @@ export class QueryBuilderComponent implements OnInit {
       this.openModal('filter');
     } else if (mode === 'submit') {
       this.filterFormSubmitted = true;
+      /* #TODO Handle custom validation here
       if (this.filterForm.invalid) {
         return;
-      }
+      }*/
       var filter = this.filterForm.value.queryBuilder;
       if (this.isModeEdit) {
+
         this.pushSpecificFilter(filter, this.editIndex);
         this.isModeEdit = false;
         this.editIndex = null;
@@ -221,7 +226,7 @@ export class QueryBuilderComponent implements OnInit {
       var f = filter['q']['commonProp'][i];
       for (var j = 0; j < f.length; j++) {
         if (f[j]['fe']) {
-          this.filterStrings['commonProp'].push(this.getEventName(f[j]['e']) + ' where ' + this.getPropsName(f[j]['f'],this.propsMap[f[j]['e']]) + ' is ' + this.getOperatorName(f[j]['o']) + ' ' + f[j]['v']);
+          this.filterStrings['commonProp'].push(this.getPropsName(f[j]['f'],this.propsMap[f[j]['e']]) + this.getOperatorName(f[j]['o']) + ' ' + f[j]['v']);
         } else {
           this.filterStrings['commonProp'].push(this.getEventName(f[j]['e']));
         }
@@ -296,7 +301,7 @@ export class QueryBuilderComponent implements OnInit {
   addQuery() {
     if (this.filterForm.valid) {
       this.t.push(this._formBuilder.group({
-        e: [-1, Validators.required],
+        e: [-1],
         fe: [false],
         o: [''],
         f: [''],

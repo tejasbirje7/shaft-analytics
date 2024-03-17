@@ -17,6 +17,7 @@ export class FilterComponent implements OnInit {
   eventsMetaLoaded : boolean = false;
   needTriggerEvent : boolean= false;
   eventsMeta : any[];
+  propsMeta: any[];
   queryFormed;
   from :string = "";
   to: string = "";
@@ -58,7 +59,8 @@ export class FilterComponent implements OnInit {
     this.restClient.invokeDashboardService("account/meta/events")
       .subscribe(res => {
         let r = JSON.parse(JSON.stringify(res));
-        this.eventsMeta = r.data;
+        this.eventsMeta = r.data.eventsMeta;
+        this.propsMeta = r.data.propsMeta;
         this.eventsMetaLoaded = true;
       }, (err) => {
         console.log(err);

@@ -40,7 +40,7 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
-              <app-query-builder [(triggerEvent)]=needTriggerEvent [(eventsMeta)]="eventsMeta" (onChange)="getQuery($event)" #query></app-query-builder>
+              <app-query-builder [(triggerEvent)]=needTriggerEvent [(eventsMeta)]="eventsMeta" [(propsMeta)]="propsMeta" (onChange)="getQuery($event)" #query></app-query-builder>
               <mat-action-row>
                 <button mat-button color="primary" (click)="query.createFilters();nextStep()">Next</button>
               </mat-action-row>

@@ -130,7 +130,7 @@
           <mat-icon class="bell-icon" color="black" name="close" (click)="removeQuery(i)"></mat-icon>
           <div class="parent" [formGroup]="query">
 
-            <mat-form-field>
+            <mat-form-field *ngIf="!commonPropsSelected">
               <mat-label>Enter a date range</mat-label>
               <mat-date-range-input  [rangePicker]="picker">
                 <input matStartDate formControlName="sT" placeholder="Start date">
@@ -144,7 +144,7 @@
             </mat-form-field>
 
             <!--      EVENT NAME     -->
-            <mat-form-field color='accent'>
+            <mat-form-field color='accent' *ngIf="!commonPropsSelected">
               <mat-label>Event</mat-label>
               <mat-select type="number" (selectionChange)="populateProps($event,i)" style="color: black;font-weight: bolder" formControlName="e"
                           [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].e.errors }"
@@ -159,18 +159,32 @@
               </div>
             </mat-form-field>
 
-            <mat-slide-toggle formControlName="fe" style="font-weight: bolder;color: indigo"
+            <mat-slide-toggle [(ngModel)]="commonPropsSelected" formControlName="fe" style="font-weight: bolder;color: indigo"
                               (click)="toggleFilter(i)">Filter
             </mat-slide-toggle>
 
 
-            <!--      ITEMS     -->
+            <!--      FIELDS     -->
             <!--                        <mat-form-field color='accent' *ngIf="query['controls'].o.value == 'eq'">-->
-            <mat-form-field color='accent' *ngIf="query['controls'].fe.value ==true">
+            <mat-form-field color='accent' *ngIf="query['controls'].fe.value ==true && !commonPropsSelected">
               <mat-label>Field</mat-label>
               <mat-select style="color: black;font-weight: bolder" formControlName="f"
                           [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].f.errors }">
                 <mat-option style="color: black;font-weight: bolder" *ngFor="let p of prop[i]"
+                            value="{{ p.nm }}">
+                  {{ p.nm }}
+                </mat-option>
+              </mat-select>
+              <div *ngIf="filterFormSubmitted && query['controls'].f.errors">
+                <div *ngIf="query['controls'].f.errors.required">Select atleast one field</div>
+              </div>
+            </mat-form-field>
+
+            <mat-form-field color='accent' *ngIf="query['controls'].fe.value ==true">
+              <mat-label>Field</mat-label>
+              <mat-select style="color: black;font-weight: bolder" formControlName="f"
+                          [ngClass]="{ 'is-invalid': filterFormSubmitted && query['controls'].f.errors }">
+                <mat-option style="color: black;font-weight: bolder" *ngFor="let p of propsMeta"
                             value="{{ p.nm }}">
                   {{ p.nm }}
                 </mat-option>

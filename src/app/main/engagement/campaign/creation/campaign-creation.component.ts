@@ -14,6 +14,7 @@ export class CampaignCreationComponent implements OnInit {
   needTriggerEvent : boolean= true;
   eventsMetaLoaded : boolean = false;
   eventsMeta : any[];
+  propsMeta : any[];
   step : number = 0;
   queryFormed;
   campaignTypes = [
@@ -140,7 +141,8 @@ export class CampaignCreationComponent implements OnInit {
     this.restClient.invokeDashboardService("account/meta/events")
       .subscribe(res => {
         let r = JSON.parse(JSON.stringify(res));
-        this.eventsMeta = r.data;
+        this.eventsMeta = r.data.eventsMeta;
+        this.propsMeta = r.data.propsMeta;
         this.eventsMetaLoaded = true;
       }, (err) => {
         console.log(err);
