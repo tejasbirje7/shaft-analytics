@@ -76,22 +76,28 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
-              <mat-form-field appearance="fill">
-                <div class="parent">
-                  <ibm-file-uploader
-                    [title]="'File uploader'"
-                    [description]="'only jpg, png'"
-                    [buttonText]="'+'"
-                    [buttonType]="'ghost'"
-                    [accept]="'.png,image/jpeg'"
-                    [multiple]="multiFile"
-                    (filesChange)="fileUploaded($event)"
-                    [size]="'normal'"
-                    [disabled]="false">
-                  </ibm-file-uploader>
-                </div>
-                <input disabled matInput>
-              </mat-form-field>
+              <div class="center" mat-dialog-actions>
+                <button mat-button style="font-weight: bolder;color: indigo"
+                        (click)="filterAction('add', 'didNot')">Add
+                </button>
+              </div>
+
+<!--              <mat-form-field appearance="fill">-->
+<!--                <div class="parent">-->
+<!--                  <ibm-file-uploader-->
+<!--                    [title]="'File uploader'"-->
+<!--                    [description]="'only jpg, png'"-->
+<!--                    [buttonText]="'+'"-->
+<!--                    [buttonType]="'ghost'"-->
+<!--                    [accept]="'.png,image/jpeg'"-->
+<!--                    [multiple]="multiFile"-->
+<!--                    (filesChange)="fileUploaded($event)"-->
+<!--                    [size]="'normal'"-->
+<!--                    [disabled]="false">-->
+<!--                  </ibm-file-uploader>-->
+<!--                </div>-->
+<!--                <input disabled matInput>-->
+<!--              </mat-form-field>-->
 
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Previous</button>

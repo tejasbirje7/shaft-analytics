@@ -73,6 +73,7 @@ export class CampaignCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEventsMeta();
+    this.eventsMetaLoaded = true;
   }
 
   setStep(index: number) {

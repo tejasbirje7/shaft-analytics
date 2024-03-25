@@ -95,6 +95,7 @@ export class QueryBuilderComponent implements OnInit {
 
   filterAction(mode, filterType = undefined, index = undefined) {
     this.commonPropsSelected = filterType == "commonProp";
+    console.log("Common Props ",this.commonPropsSelected);
     filterType != undefined ? this.filterType = filterType : undefined;
     if (mode === 'edit') {
       this.isModeEdit = true;
@@ -320,6 +321,8 @@ export class QueryBuilderComponent implements OnInit {
   }
 
   toggleFilter(index) {
+    console.log("Toggle ",this.commonPropsSelected)
+    console.log("Filter Type Selected ",this.filterType)
     this.t.value[index]['fe'] = !this.t.value[index]['fe'];
   }
 
